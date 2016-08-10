@@ -9,7 +9,7 @@ default: &default
   pool: 5
   timeout: 5000
 
-production:
+development:
   adapter: mysql2
   database: toeicdb
   username: tranthuc
@@ -18,7 +18,6 @@ production:
   port: 3306
   pool: 5
   timeout: 5000
-
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
