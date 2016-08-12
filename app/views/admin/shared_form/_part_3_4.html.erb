@@ -1,4 +1,3 @@
-<% arr = ["A", "B", "C", "D"] %>
 <%= form_for [:admin, object] do |f| %>
   <%= render "shared/error_messages", object: object %>
   <div class="field">
@@ -9,11 +8,12 @@
     <div class="sub_questions">
       <div class="question">
         <%= sub_question_builder.label :content, "Question #{sub_question_builder.index + 1}" %><br />
-        <%= sub_question_builder.text_area :content, :rows => 3, class: "form-control" %><br />
+        <%= sub_question_builder.text_field :content, :rows => 3, class: "form-control" %><br />
       </div>
       <%= sub_question_builder.fields_for :options do |option_builder| %>
         <div class="options">
-          <%= option_builder.label :content, "#{arr[option_builder.index]}" %>
+          <%= option_builder.check_box :correct, class: "form-control option" %>
+          <%= option_builder.label :content, SysConst::OPTION_TO_STRING[option_builder.index] %>
           <%= option_builder.text_field :content, class: "form-control option" %>
         </div>
       <% end %>
