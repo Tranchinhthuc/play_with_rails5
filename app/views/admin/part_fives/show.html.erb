@@ -1,0 +1,4 @@
+  Question: <%= @part_five.content.html_safe %> </br>
+  <% @part_five.sub_questions.first.options.each do |option| %>
+    <p class="<%= (option.correct ? 'correct-option' : '') %>"><%= option.content %></p>
+  <% end %>
