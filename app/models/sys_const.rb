@@ -24,7 +24,10 @@ class SysConst
   NUMBER_OF_SUB_QUESTIONS = {
     part_three: 3,
     part_four: 3,
-    part_seven_one: 5,
+    part_five: 1,
+    part_seven_one: 1,
     part_seven_two: 5
   }
+
+  OPTION_TO_STRING = ["A", "B", "C", "D"]
 end

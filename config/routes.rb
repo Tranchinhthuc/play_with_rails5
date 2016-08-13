@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :part_twos
     resources :part_threes
     resources :part_fours
+    resources :part_fives
+    resources :part_sixes
+    resources :part_seven_ones
+    resources :part_seven_twos
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
