@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  [:questions, :part_ones, :part_twos, :part_threes, :part_fours, :part_fives, :part_sixs, :part_seven_ones, :part_seven_twos, :examinations].each do |object|
+  [:questions, :part_ones, :part_twos, :part_threes, :part_fours, :part_fives, :part_sixes, :part_seven_ones, :part_seven_twos, :examinations].each do |object|
     has_many object, foreign_key: "creator_id"
   end
 

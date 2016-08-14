@@ -23,11 +23,15 @@
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".fields").hide();
+  $(link).closest(".sub_questions").hide();
 }
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
-  $(link).prev().before(content.replace(regexp, new_id));
+  if($(".sub_questions").length < 5){
+    $(link).prev().after(content.replace(regexp, new_id));
+  } else {
+    alert("Cann't add more than 5 questions");
+  }
 }
