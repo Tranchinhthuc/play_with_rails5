@@ -25,7 +25,8 @@ class SysConst
     part_three: 3,
     part_four: 3,
     part_five: 1,
-    part_seven_one: 1,
+    part_six: 3,
+    part_seven_one: 2,
     part_seven_two: 5
   }
 

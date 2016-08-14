@@ -1,1 +1,9 @@
-index.html.erb
+<ul>
+  <% @part_sixes.each do |part_six| %>
+    <%= audio_tag part_six.content.html_safe, controls: true %> |
+    <%= link_to "show", admin_part_six_path(part_six) %> |
+    <%= link_to "edit", edit_admin_part_six_path(part_six) %> |
+    <%= link_to "delete", admin_part_six_path(part_six), method: :delete,
+          data: { confirm: 'Are you sure?' } %> <br>
+  <% end %>
+</ul>
