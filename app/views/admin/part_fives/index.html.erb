@@ -1,6 +1,6 @@
 <ul>
   <% @part_fives.each do |part_five| %>
-    <%= audio_tag part_five.content.html_safe %> |
+    <%= part_five.content.html_safe %> |
     <%= link_to "show", admin_part_five_path(part_five) %> |
     <%= link_to "edit", edit_admin_part_five_path(part_five) %> |
     <%= link_to "delete", admin_part_five_path(part_five), method: :delete,

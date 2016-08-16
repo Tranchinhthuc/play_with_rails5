@@ -12,9 +12,7 @@
   <% end %>
   <b>Level: </b>
 
-  <div class="field">
-    <%= f.select(:level, SysConst::QUESTION_LEVELS.collect {|level, value| [SysConst::QUESTION_LEVELS_TO_S[level], value]}, :prompt => 'Select') %>
-  </div>
+  <%= render "admin/shared_form/level_field", f: f %>
 
   <div class="actions">
     <%= f.submit %>

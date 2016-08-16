@@ -31,4 +31,7 @@ class SysConst
   }
 
   OPTION_TO_STRING = ["A", "B", "C", "D"]
+
+  TABLE_NAME = ["part_ones", "part_twos", "part_threes", "part_fours", "part_fives",
+                "part_sixes", "part_seven_ones", "part_seven_twos"]
 end

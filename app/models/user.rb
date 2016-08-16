@@ -10,4 +10,13 @@ class User < ApplicationRecord
   has_many :answer_sheets, foreign_key: "examinee_id"
 
   scope :index, -> { all }
+
+  enum role: {
+    admin: 1,
+    normal: 2
+  }
+
+  def admin?
+    role == "admin"
+  end
 end
