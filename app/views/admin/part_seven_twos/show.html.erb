@@ -1,5 +1,5 @@
-<%= audio_tag @part_sevent_two.content.html_safe %>
-<% @part_sevent_two.sub_questions.each.with_index(1) do |sub_question, index| %>
+<%= @part_seven_two.content.html_safe %>
+<% @part_seven_two.sub_questions.each.with_index(1) do |sub_question, index| %>
   Question<%= index %>: <%= sub_question.content %> </br>
   <% sub_question.options.each do |option| %>
     <%= option.content %> </br>

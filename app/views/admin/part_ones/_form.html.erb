@@ -15,9 +15,7 @@
     <b><%= option %>: </b><%= f.radio_button :correct_option, value, required: true %> </br>
   <% end %>
 
-  <div class="field">
-    <%= f.select(:level, SysConst::QUESTION_LEVELS.collect {|level, value| [SysConst::QUESTION_LEVELS_TO_S[level], value]}, :prompt => 'Select') %>
-  </div>
+  <%= render "admin/shared_form/level_field", f: f %>
 
   <div class="actions">
     <%= f.submit %>

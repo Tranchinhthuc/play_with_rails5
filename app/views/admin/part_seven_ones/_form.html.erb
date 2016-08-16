@@ -22,6 +22,7 @@
       </div>
     <% end %>
   </div>
+  <%= render "admin/shared_form/level_field", f: f %>
   <%= link_to_add_fields "Add sub_question", f, :sub_questions %>
 
   <div class="actions">

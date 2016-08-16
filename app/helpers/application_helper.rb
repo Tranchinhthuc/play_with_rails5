@@ -19,4 +19,8 @@ module ApplicationHelper
     href = html_options[:href] || '#'
     content_tag :a, name, html_options.merge(href: href, onclick: onclick)
   end
+
+  def singulize_model_name plural_model_name
+    ActiveModel::Naming.singular(plural_model_name.classify.constantize)
+  end
 end

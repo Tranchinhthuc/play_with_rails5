@@ -1,5 +1,5 @@
-<%= simple_form_for([:admin, @part_sevent_two]) do |f| %>
-  <%= render "shared/error_messages", object: @part_sevent_two %>
+<%= simple_form_for([:admin, @part_seven_two]) do |f| %>
+  <%= render "shared/error_messages", object: @part_seven_two %>
 
   <div class="field">
     <%= f.input :content, as: :summernote %>
@@ -22,6 +22,8 @@
       </div>
     <% end %>
   </div>
+
+  <%= render "admin/shared_form/level_field", f: f %>
 
   <div class="actions">
     <%= f.submit %>

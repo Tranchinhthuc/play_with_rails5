@@ -1,4 +1,4 @@
-class Admin::PartFoursController < ApplicationController
+class Admin::PartFoursController < Admin::Base
   include StandardActions
 
   def index
