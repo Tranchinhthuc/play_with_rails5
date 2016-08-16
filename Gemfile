@@ -16,6 +16,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'devise'
 gem 'passenger'
 gem "cocoon"
+gem 'cancancan'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -49,6 +50,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'faker'
   # gem 'sqlite3'
 end
 
