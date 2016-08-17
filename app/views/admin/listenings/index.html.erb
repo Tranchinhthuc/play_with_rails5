@@ -1,0 +1,8 @@
+<% @listenings.each do |listening| %>
+  Examination: <%= listening.questions.count %>
+  <%= link_to "show", admin_listening_path(listening) %> |
+  <%= link_to "edit", edit_admin_listening_path(listening) %> |
+  <%= link_to "delete", admin_listening_path(listening), method: :delete,
+        data: { confirm: 'Are you sure?' } %> <br>
+<% end %>
+<%= link_to "Add Listening Part", new_admin_listening_path %> <br>

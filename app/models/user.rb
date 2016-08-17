@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def admin?
     role == "admin"
   end
+
+  def normal?
+    role == "normal"
+  end
 end
