@@ -34,4 +34,15 @@ class SysConst
 
   TABLE_NAME = ["part_ones", "part_twos", "part_threes", "part_fours", "part_fives",
                 "part_sixes", "part_seven_ones", "part_seven_twos"]
+
+  QUESTION_TYPE_TO_STRING = {
+    part_one: "Photo",
+    part_two: "Question-Response",
+    part_three: "Short conversation",
+    part_four: "Short Talks",
+    part_five: "Incomplete Sentences",
+    part_six: "Text Completion",
+    part_seven_one: "Single passage",
+    part_seven_two: "Double passage"
+  }
 end

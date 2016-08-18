@@ -1,0 +1,8 @@
+<% @examinations.each do |examination| %>
+  Examination: <%= examination.questions.count %>
+  <%= link_to "show", admin_examination_path(examination) %> |
+  <%= link_to "edit", edit_admin_examination_path(examination) %> |
+  <%= link_to "delete", admin_examination_path(examination), method: :delete,
+        data: { confirm: 'Are you sure?' } %> <br>
+<% end %>
+<%= link_to "Add examination", new_admin_examination_path %> <br>

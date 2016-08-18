@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :part_sixes
     resources :part_seven_ones
     resources :part_seven_twos
+    resources :examinations
+    resources :readings
+    resources :listenings
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

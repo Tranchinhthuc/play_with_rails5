@@ -19,10 +19,15 @@
     <%= link_to "Manage Part 2", admin_part_twos_path %> |
     <%= link_to "Manage Part 3", admin_part_threes_path %> |
     <%= link_to "Manage Part 4", admin_part_fours_path %> |
-    <%= link_to "Manage Part 5", admin_part_fives_path %> |
+    <%= link_to "Manage Part 5", admin_part_fives_path %> <br>
     <%= link_to "Manage Part 6", admin_part_sixes_path %> |
     <%= link_to "Manage Part 7-1", admin_part_seven_ones_path %> |
     <%= link_to "Manage Part 7-2", admin_part_seven_twos_path %><br>
+    <%= link_to "Manage examination", admin_examinations_path %> |
+    <%= link_to "Manage listening", admin_listenings_path %> |
+    <%= link_to "Manage reading", admin_readings_path %> <br>
+    <%= link_to "Build listening part automatically", admin_listenings_path, method: :post %> |
+    <%= link_to "Build reading part automatically", admin_readings_path, method: :post %><br>
     <% if controller_name.in?(SysConst::TABLE_NAME) %>
       <%= link_to "Add Question", [:new, :admin, singulize_model_name(controller_name).to_sym] %>
     <% end %>

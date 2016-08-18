@@ -1,0 +1,8 @@
+<% @readings.each do |reading| %>
+  Examination: <%= reading.questions.count %>
+  <%= link_to "show", admin_reading_path(reading) %> |
+  <%= link_to "edit", edit_admin_reading_path(reading) %> |
+  <%= link_to "delete", admin_reading_path(reading), method: :delete,
+        data: { confirm: 'Are you sure?' } %> <br>
+<% end %>
+<%= link_to "Add Reading Part", new_admin_reading_path %> <br>
