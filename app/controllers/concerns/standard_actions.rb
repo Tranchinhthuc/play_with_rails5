@@ -34,7 +34,7 @@ module StandardActions
     instance_variable_set(:"@#{object_name}", klass.new)
     SysConst::NUMBER_OF_SUB_QUESTIONS[object_name.to_sym].times do
       sub_question = instance_variable_get(:"@#{object_name}").sub_questions.build
-      4.times { sub_question.options.build }
+      SysConst::COUNT_OF_OPTIONS[object_name.to_sym].times { sub_question.options.build }
     end
   end
 

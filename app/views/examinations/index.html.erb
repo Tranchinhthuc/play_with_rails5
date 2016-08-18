@@ -1,0 +1,5 @@
+<% @examinations.each do |examination| %>
+  Examination: <%= examination.questions.count %>
+  <%= link_to "Listening", new_examination_answer_sheet_path(examination, answer_sheet_type: "listening") %> |
+  <%= link_to "Reading", new_examination_answer_sheet_path(examination, answer_sheet_type: "reading") %>
+<% end %>

@@ -11,9 +11,19 @@
     <%= f.file_field :audio %>
   </div>
 
-  <% SysConst::PART_1_2_OPTIONS.each do |option, value| %>
-    <b><%= option %>: </b><%= f.radio_button :correct_option, value, required: true %> </br>
-  <% end %>
+  <div class="field">
+    <%= f.fields_for :sub_questions do |sub_question_builder| %>
+      <div class="sub_questions">
+        <%= sub_question_builder.fields_for :options do |option_builder| %>
+          <div>
+            <%= SysConst::OPTION_TO_STRING[option_builder.index] %>
+            <%#= option_builder.text_field :content, class: "form-control option" %>
+            <%= option_builder.check_box :correct %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <%= render "admin/shared_form/level_field", f: f %>
   <%= render "admin/shared_form/explanation_field", f: f %>

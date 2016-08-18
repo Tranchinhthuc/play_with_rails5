@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :articles
+  resources :examinations, only: [:index] do
+    resources :answer_sheets, only: [:new, :create]
+  end
+  resources :answer_sheets, only: [:index, :show]
 
   root 'static_pages#home'
   namespace :admin do

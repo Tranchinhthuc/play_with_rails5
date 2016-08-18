@@ -3,5 +3,10 @@ class AnswerSheet < ApplicationRecord
   belongs_to :examinee, class_name: "User"
   has_many :answers
 
+  enum answer_sheet_type: {
+    listening: 1,
+    reading: 2
+  }
+
   scope :index, -> { all }
 end

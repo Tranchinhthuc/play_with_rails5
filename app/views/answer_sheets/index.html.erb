@@ -1,0 +1,9 @@
+<ul>
+  <% @answer_sheets.each do |answer_sheet| %>
+    <%= answer_sheet.id %> |
+    <%= link_to "show", admin_answer_sheet_path(answer_sheet) %> |
+    <%= link_to "edit", edit_admin_answer_sheet_path(answer_sheet) %> |
+    <%= link_to "delete", admin_answer_sheet_path(answer_sheet), method: :delete,
+          data: { confirm: 'Are you sure?' } %> <br>
+  <% end %>
+</ul>
