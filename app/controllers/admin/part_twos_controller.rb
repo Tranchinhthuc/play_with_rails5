@@ -10,11 +10,11 @@ class Admin::PartTwosController < Admin::Base
   end
 
   def new
-    standard_new
+    new_with_sub_questions
   end
 
   def create
-    standard_create
+    create_with_sub_questions
   end
 
   def edit
@@ -22,7 +22,7 @@ class Admin::PartTwosController < Admin::Base
   end
 
   def update
-    standard_update
+    update_with_sub_questions
   end
 
   def destroy
