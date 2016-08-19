@@ -4,7 +4,7 @@ class AnswerSheet < ApplicationRecord
 
   has_many :answers, dependent: :destroy
 
-  accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
   enum answer_sheet_type: {
     listening: 1,
