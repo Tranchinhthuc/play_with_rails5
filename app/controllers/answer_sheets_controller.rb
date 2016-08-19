@@ -33,6 +33,7 @@ class AnswerSheetsController < ApplicationController
   def create
     @examination = Examination.find params[:examination_id]
     @answer_sheet = @examination.answer_sheets.build permit_params
+    byebug
     if @answer_sheet.save
       redirect_to answer_sheet_path(@answer_sheet)
     else
@@ -43,6 +44,6 @@ class AnswerSheetsController < ApplicationController
 
   private
   def permit_params
-    params.fetch(:answer_sheet, {}).permit(:audio, :photo, :correct_option, :level)
+    params.fetch(:answer_sheet, {}).permit(answers_attributes: [:id, :option_id])
   end
 end

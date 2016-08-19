@@ -23,4 +23,17 @@ module ApplicationHelper
   def singulize_model_name plural_model_name
     ActiveModel::Naming.singular(plural_model_name.classify.constantize)
   end
+
+  def question_index question, from_index
+    count_of_sub_questions = question.sub_questions.count
+    label = ""
+    if count_of_sub_questions <= 2
+      label
+    else
+      count_of_sub_questions.times do |i|
+        label += " #{from_index + i}" + (i == (count_of_sub_questions - 1) ? "" : " - ")
+      end
+    end
+    label
+  end
 end
