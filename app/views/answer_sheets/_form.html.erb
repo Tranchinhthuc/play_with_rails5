@@ -1,25 +1,28 @@
 <%= form_for [@examination, @answer_sheet] do |f| %>
   <%= render "shared/error_messages", object: @answer_sheet %>
+  <% index = 1 %>
   <% @answer_sheet.answers.build %>
   <div class="col-md-8">
     <% @questions_by_part.each do |question_type, questions| %>
       <p>（<%= SysConst::QUESTION_TYPE_TO_STRING[question_type]%>）</p>
-      <% if question_type == :part_one %>
-        <% questions.each_with_index do |question, index|  %>
+      <% questions.each do |question|  %>
+        <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
+        <%= image_tag(question.photo, height: '150', width: '150') if question_type == :part_one %>
+        <%= audio_tag(question.audio, controls: true) if question_type.in? SysConst::LISTENING_TYPES %>
+        <% question.sub_questions.each do |sub_question| %>
           <%= f.fields_for :answers do |builder| %>
-            <b><%= "Question #{index+1}." %></b> <%= image_tag question.photo, height: '150', width: '150' %>
-            <% question.sub_questions.first.options.each_with_index do |option, index| %>
+            <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
+            <b><%= "Question #{index}." %></b>
+            <% sub_question.options.each_with_index do |option, index| %>
               <div>
                 <%= builder.label :option_id, SysConst::OPTION_TO_STRING[index] %>
                 <%= builder.radio_button :option_id, option.id %>
-                <br>
-                <%#= builder.label(:option_id, option.content) if option.content %>
+                <%= option.content %>
               </div>
             <% end %>
+            <% index += 1 %>
           <% end %>
         <% end %>
-      <% elsif question_type == "part_two" %>
-      <% else %>
       <% end %>
     <% end %>
   </div>

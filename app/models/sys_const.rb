@@ -67,4 +67,8 @@ class SysConst
     part_seven_one: 4,
     part_seven_two: 4
   }
+
+  LISTENING_TYPES = [:part_one, :part_two, :part_three, :part_four]
+  READING_TYPES = [:part_five, :part_six, :part_seven_one, :part_seven_two]
+  HAS_MANY_SUB_QUESTIONS = [:part_three, :part_four, :part_six, :part_seven_one, :part_seven_two]
 end
