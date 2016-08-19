@@ -26,5 +26,6 @@
       <% end %>
     <% end %>
   </div>
+  <%= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
   <%= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
 <% end %>

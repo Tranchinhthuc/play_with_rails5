@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20160818073651) do
 
   create_table "answer_sheets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "examination_id"
-    t.integer  "examiee_id"
+    t.integer  "examinee_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "answer_sheet_type"
