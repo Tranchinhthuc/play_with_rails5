@@ -17,6 +17,8 @@ gem 'devise'
 gem 'passenger'
 gem "cocoon"
 gem 'cancancan'
+gem 'omniauth-facebook'
+gem "koala", "~> 2.2"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
