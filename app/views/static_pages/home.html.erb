@@ -1,7 +1,48 @@
-<div id="summernote">Hello Summernote</div>
+<!-- <div id="summernote">Hello Summernote</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
     $('#summernote').summernote();
   });
-</script>
+</script> -->
+<div class="container">
+  <% unless user_signed_in? %>
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Sign up</h2>
+
+        <%= simple_form_for(User.new, as: :user, url: registration_path(:user)) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :full_name, required: true, autofocus: true %>
+            <%= f.input :email, required: true, autofocus: true %>
+            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            <%= f.input :password_confirmation, required: true %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Sign up", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h2>Introduction</h2>
+        <p>
+          Register a free account to do tests now.<br>
+          You will get result of a test immediately after you submit.<br>
+          You can login with your facebook account. <br>
+          <%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, "facebook"),
+          class: "btn btn-primary" %>
+        </p>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+    </div>
+  <% end %>
+</div>
+

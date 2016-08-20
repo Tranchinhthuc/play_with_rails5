@@ -1,9 +1,14 @@
-<ul>
-  <% @answer_sheets.each do |answer_sheet| %>
-    <%= answer_sheet.id %> |
-    <%= link_to "show", admin_answer_sheet_path(answer_sheet) %> |
-    <%= link_to "edit", edit_admin_answer_sheet_path(answer_sheet) %> |
-    <%= link_to "delete", admin_answer_sheet_path(answer_sheet), method: :delete,
-          data: { confirm: 'Are you sure?' } %> <br>
-  <% end %>
-</ul>
+<% if @answer_sheets.present? %>
+  <ul>
+    <% @answer_sheets.each do |answer_sheet| %>
+      <%= answer_sheet.id %> |
+      <%= link_to "show", answer_sheet_path(answer_sheet) %> |
+      <%#= link_to "edit", edit_answer_sheet_path(answer_sheet) %> |
+      <%#= link_to "delete", answer_sheet_path(answer_sheet), method: :delete,
+            data: { confirm: 'Are you sure?' } %> <br>
+    <% end %>
+  </ul>
+<% else %>
+ <h1>You haven't done any test. Test now!</h1>
+ <%= link_to "Available Examinations", examinations_path %>
+<% end %>
