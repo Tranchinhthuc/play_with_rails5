@@ -1,7 +1,7 @@
 <% index = 1 %>
 <div class="col-md-8">
   <% @questions_by_part.each do |question_type, questions| %>
-    <p>（<%= SysConst::QUESTION_TYPE_TO_STRING[question_type]%>）</p>
+    <p>（<%= SysConst::QUESTION_TYPE_TO_STRING_1[question_type]%>）</p>
     <% questions.each do |question|  %>
       <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
       <%= image_tag(question.photo, height: '150', width: '150') if question_type == :part_one %>
@@ -9,7 +9,7 @@
       <% question.sub_questions.each do |sub_question| %>
         <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
         <b class="<%= sub_question.hasnt_answer_in?(@answer_sheet) ? 'no-answer' : nil %>">
-          <%= "Question #{index}." %>  
+          <%= "Question #{index}." %>
         </b>
         <% sub_question.options.each_with_index do |option, option_index| %>
           <div>

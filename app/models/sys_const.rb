@@ -46,7 +46,7 @@ class SysConst
   TABLE_NAME = ["part_ones", "part_twos", "part_threes", "part_fours", "part_fives",
                 "part_sixes", "part_seven_ones", "part_seven_twos"]
 
-  QUESTION_TYPE_TO_STRING = {
+  QUESTION_TYPE_TO_STRING_1 = {
     part_one: "Photo",
     part_two: "Question-Response",
     part_three: "Short conversation",
@@ -55,6 +55,17 @@ class SysConst
     part_six: "Text Completion",
     part_seven_one: "Single passage",
     part_seven_two: "Double passage"
+  }
+
+  QUESTION_TYPE_TO_STRING_2 = {
+    part_one: "Part 1",
+    part_two: "Part 2",
+    part_three: "Part 3",
+    part_four: "Part 4",
+    part_five: "Part 5",
+    part_six: "Part 6",
+    part_seven_one: "Part 7(Single passage)",
+    part_seven_two: "Part 7(Double passage)"
   }
 
   COUNT_OF_OPTIONS = {
@@ -71,4 +82,15 @@ class SysConst
   LISTENING_TYPES = [:part_one, :part_two, :part_three, :part_four]
   READING_TYPES = [:part_five, :part_six, :part_seven_one, :part_seven_two]
   HAS_MANY_SUB_QUESTIONS = [:part_three, :part_four, :part_six, :part_seven_one, :part_seven_two]
+
+  DIRECTIONS_BY_PART = {
+    part_one: "Part 1",
+    part_two: "Part 2",
+    part_three: "Part 3",
+    part_four: "Part 4",
+    part_five: "Part 5",
+    part_six: "Part 6",
+    part_seven_one: "Part 7(Single passage)",
+    part_seven_two: "Part 7(Double passage)"
+  }
 end

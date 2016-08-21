@@ -1,5 +1,24 @@
-<% @examinations.each do |examination| %>
-  Examination: <%= examination.questions.count %>
-  <%= link_to "Listening", new_examination_answer_sheet_path(examination, answer_sheet_type: "listening") %> |
-  <%= link_to "Reading", new_examination_answer_sheet_path(examination, answer_sheet_type: "reading") %>
-<% end %>
+<div class="col-md-8 col-md-offset-2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tests</th>
+        <th>Listening</th>
+        <th>Reading</th>
+        <th>Views</th>
+        <!-- <th>Rate</th> -->
+        <!-- <th>Best score</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @examinations.each do |examination| %>
+          <tr>
+            <td>Test <%= examination.id %></td>
+            <td><%= link_to "Listening", new_examination_answer_sheet_path(examination, answer_sheet_type: "listening") %></td>
+            <td><%= link_to "Reading", new_examination_answer_sheet_path(examination, answer_sheet_type: "reading") %></td>
+            <td><%= examination.answer_sheets.count %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

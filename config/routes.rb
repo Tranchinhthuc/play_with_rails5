@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   resources :answer_sheets, only: [:index, :show]
 
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations'}
 
   root 'static_pages#home'
   namespace :admin do
