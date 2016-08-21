@@ -28,9 +28,4 @@ class Admin::PartOnesController < Admin::Base
   def destroy
     standard_destroy
   end
-
-  private
-  def permit_params
-    params.fetch(:part_one, {}).permit(:audio, :photo, :correct_option, :level)
-  end
 end

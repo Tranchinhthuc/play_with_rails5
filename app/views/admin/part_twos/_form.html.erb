@@ -12,7 +12,7 @@
         <%= sub_question_builder.fields_for :options do |option_builder| %>
           <div>
             <%= SysConst::PART_TWO_OPTION_TO_STRING[option_builder.index] %>
-            <%#= option_builder.text_field :content, class: "form-control option" %>
+            <%= option_builder.text_field :content, class: "form-control option" %>
             <%= option_builder.check_box :correct %>
           </div>
         <% end %>

@@ -93,4 +93,9 @@ class SysConst
     part_seven_one: "Part 7(Single passage)",
     part_seven_two: "Part 7(Double passage)"
   }
+
+  TEST_TIME_BY_TYPE = {
+    listening: 45*60,
+    reading: 75*60,
+  }
 end
