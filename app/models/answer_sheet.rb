@@ -12,4 +12,8 @@ class AnswerSheet < ApplicationRecord
   }
 
   scope :index, -> { all }
+
+  def score
+    answers.select{|answer| answer.option.correct}.count
+  end
 end

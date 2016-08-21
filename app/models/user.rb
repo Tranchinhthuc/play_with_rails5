@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :avatar, PhotoUploader
+
   devise :database_authenticatable, :registerable, :rememberable, :recoverable,
          :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   [:questions, :part_ones, :part_twos, :part_threes, :part_fours, :part_fives, :part_sixes, :part_seven_ones, :part_seven_twos, :examinations].each do |object|
@@ -40,15 +42,19 @@ class User < ApplicationRecord
     uid = auth.uid
     email = auth.info.email.nil? ? "#{uid}@toeictest.com" : auth.info.email
     full_name = auth.info.name.nil? ? email : auth.info.name
-    create(provider: auth.provider, uid: uid, email: email, full_name: full_name,
-      password: Devise.friendly_token[0,20],
-      facebook_token: auth.credentials.token)
+    create( provider: auth.provider, uid: uid, email: email, full_name: full_name,
+            password: Devise.friendly_token[0,20],
+            facebook_token: auth.credentials.token,
+            remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large"
+          )
   end
 
   def self.find_user_by_facebook_info(auth)
     unless user = User.find_by(provider: auth.provider, uid: auth.uid)
       if user = User.find_by(email: auth.info.email)
-        user.update_attributes(provider: auth.provider, uid: auth.uid, facebook_token: auth.credentials.token) if user.ordinary_user?
+        user.update_attributes(provider: auth.provider,
+          uid: auth.uid, facebook_token: auth.credentials.token,
+          remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large") if user.ordinary_user?
       end
     end
     user

@@ -2,7 +2,7 @@
   <%= render "shared/error_messages", object: @listening %>
   <% [:part_one, :part_two, :part_three, :part_four].each do |question_type| %>
     <div>
-        <p>（<%= SysConst::QUESTION_TYPE_TO_STRING[question_type]%>）</p>
+        <p>（<%= SysConst::QUESTION_TYPE_TO_STRING_1[question_type]%>）</p>
     </div>
     <div>
       <% @questions[question_type].each do |question| %>

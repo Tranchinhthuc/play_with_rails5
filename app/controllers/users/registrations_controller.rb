@@ -18,10 +18,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # current_user.update(authentication_token: Devise.friendly_token)
     super
   end
-  
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
-end 
+end
