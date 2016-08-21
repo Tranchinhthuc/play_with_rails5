@@ -3,6 +3,20 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
+  <div class="col-md-3">
+    <div class="text-center">
+      <div class="avartar">
+        <% if current_user.avatar.url.present? %>
+          <%= image_tag(current_user.avatar.in_examination.url) %>
+        <% else %>
+          <img src="http://bountytechgaming.com/uploads/avatars/avatar_4202.jpg" alt="" class="">
+        <% end -%>
+        <h6>Upload a different photo...</h6>
+        <h6><%= f.file_field :avatar %></h6>
+      </div>
+    </div>
+  </div>
+
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
 
@@ -12,7 +26,7 @@
 
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+    <%#= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
   </div>
 
   <div class="form-actions">

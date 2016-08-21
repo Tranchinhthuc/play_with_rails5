@@ -5,7 +5,7 @@ class Question < ApplicationRecord
   scope :index, -> { all }
 
   def correct_option_s
-    SysConst::PART_1_2_OPTIONS.key(correct_option)
+    # SysConst::PART_1_2_OPTIONS.key(correct_option)
   end
 
   def level_s

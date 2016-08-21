@@ -1,0 +1,27 @@
+// Place all the styles related to the answer_sheets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.choosen-option {
+  color: red;
+}
+
+.correct-option {
+  color: green;
+}
+
+.correct-answer {
+  background: green;
+}
+
+.wrong-answer {
+  background: red;
+}
+
+.has-answer {
+  background: red;
+}
+
+.no-answer {
+  background: blue;
+}

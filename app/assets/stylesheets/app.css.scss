@@ -1,3 +1,32 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "summernote";
+
+// #header {
+//   height: 100px;
+//   background: #89A789;
+// }
+.navbar-inverse{
+  background-color: #438043;
+  border-color: #438043;
+  color: white;
+}
+
+.navbar {
+  min-height: 100px;
+}
+
+#user-side-menu {
+  margin-top: 22px;
+  background-color: #5cb85c;
+}
+
+.dropdown-menu{
+  margin-left: 300px;
+}
+// .menu-link {
+//   height: 50px;
+// }
+body {
+  background-color: #F1F1F1;
+}

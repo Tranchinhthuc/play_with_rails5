@@ -1,8 +1,15 @@
 class SysConst
-  PART_1_2_OPTIONS = {
+  PART_2_OPTIONS = {
     "A" => 1,
     "B" => 2,
-    "C" => 3
+    "C" => 3,
+  }
+
+  PART_1_OPTIONS = {
+    "A" => 1,
+    "B" => 2,
+    "C" => 3,
+    "D" => 4
   }
 
   QUESTION_LEVELS = {
@@ -22,6 +29,8 @@ class SysConst
   }
 
   NUMBER_OF_SUB_QUESTIONS = {
+    part_one: 1,
+    part_two: 1,
     part_three: 3,
     part_four: 3,
     part_five: 1,
@@ -32,6 +41,61 @@ class SysConst
 
   OPTION_TO_STRING = ["A", "B", "C", "D"]
 
+  PART_TWO_OPTION_TO_STRING = ["A", "B", "C"]
+
   TABLE_NAME = ["part_ones", "part_twos", "part_threes", "part_fours", "part_fives",
                 "part_sixes", "part_seven_ones", "part_seven_twos"]
+
+  QUESTION_TYPE_TO_STRING_1 = {
+    part_one: "Photo",
+    part_two: "Question-Response",
+    part_three: "Short conversation",
+    part_four: "Short Talks",
+    part_five: "Incomplete Sentences",
+    part_six: "Text Completion",
+    part_seven_one: "Single passage",
+    part_seven_two: "Double passage"
+  }
+
+  QUESTION_TYPE_TO_STRING_2 = {
+    part_one: "Part 1",
+    part_two: "Part 2",
+    part_three: "Part 3",
+    part_four: "Part 4",
+    part_five: "Part 5",
+    part_six: "Part 6",
+    part_seven_one: "Part 7(Single passage)",
+    part_seven_two: "Part 7(Double passage)"
+  }
+
+  COUNT_OF_OPTIONS = {
+    part_one: 4,
+    part_two: 3,
+    part_three: 4,
+    part_four: 4,
+    part_five: 4,
+    part_six: 4,
+    part_seven_one: 4,
+    part_seven_two: 4
+  }
+
+  LISTENING_TYPES = [:part_one, :part_two, :part_three, :part_four]
+  READING_TYPES = [:part_five, :part_six, :part_seven_one, :part_seven_two]
+  HAS_MANY_SUB_QUESTIONS = [:part_three, :part_four, :part_six, :part_seven_one, :part_seven_two]
+
+  DIRECTIONS_BY_PART = {
+    part_one: "Part 1",
+    part_two: "Part 2",
+    part_three: "Part 3",
+    part_four: "Part 4",
+    part_five: "Part 5",
+    part_six: "Part 6",
+    part_seven_one: "Part 7(Single passage)",
+    part_seven_two: "Part 7(Double passage)"
+  }
+
+  TEST_TIME_BY_TYPE = {
+    listening: 45*60,
+    reading: 75*60,
+  }
 end

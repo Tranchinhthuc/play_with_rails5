@@ -10,11 +10,11 @@ class Admin::PartOnesController < Admin::Base
   end
 
   def new
-    standard_new
+    new_with_sub_questions
   end
 
   def create
-    standard_create
+    create_with_sub_questions
   end
 
   def edit
@@ -22,15 +22,10 @@ class Admin::PartOnesController < Admin::Base
   end
 
   def update
-    standard_update
+    update_with_sub_questions
   end
 
   def destroy
     standard_destroy
-  end
-
-  private
-  def permit_params
-    params.fetch(:part_one, {}).permit(:audio, :photo, :correct_option, :level)
   end
 end

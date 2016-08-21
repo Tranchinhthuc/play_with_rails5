@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, @listening]) do |f| %>
+  <%= render "shared/error_messages", object: @listening %>
+  <% [:part_one, :part_two, :part_three, :part_four].each do |question_type| %>
+    <div>
+        <p>（<%= SysConst::QUESTION_TYPE_TO_STRING_1[question_type]%>）</p>
+    </div>
+    <div>
+      <% @questions[question_type].each do |question| %>
+          <%= check_box_tag('question_ids[]', question.id, question.id.in?(@listening.question_ids)) %>
+          Question <%= question.id %> <br>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

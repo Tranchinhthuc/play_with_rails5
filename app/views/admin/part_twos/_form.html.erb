@@ -1,4 +1,4 @@
-<%= form_for([:admin, @part_two]) do |f| %>
+<%= simple_form_for([:admin, @part_two]) do |f| %>
   <%= render "shared/error_messages", object: @part_two %>
 
   <div class="field">
@@ -6,13 +6,23 @@
     <%= f.file_field :audio %>
   </div>
 
-  <b>Correct Option: </b> <br>
-  <% SysConst::PART_1_2_OPTIONS.each do |option, value| %>
-    <b><%= option %>: </b><%= f.radio_button :correct_option, value, required: true %> </br>
-  <% end %>
+  <div class="field">
+    <%= f.fields_for :sub_questions do |sub_question_builder| %>
+      <div class="sub_questions">
+        <%= sub_question_builder.fields_for :options do |option_builder| %>
+          <div>
+            <%= SysConst::PART_TWO_OPTION_TO_STRING[option_builder.index] %>
+            <%= option_builder.text_field :content, class: "form-control option" %>
+            <%= option_builder.check_box :correct %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <b>Level: </b>
 
   <%= render "admin/shared_form/level_field", f: f %>
+  <%= render "admin/shared_form/explanation_field", f: f %>
 
   <div class="actions">
     <%= f.submit %>

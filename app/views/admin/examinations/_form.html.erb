@@ -1,0 +1,17 @@
+<%= simple_form_for([:admin, @examination]) do |f| %>
+  <%= render "shared/error_messages", object: @examination %>
+  Choose Reading part:<br>
+  <% Reading.all.each do |reading| %>
+    Reading<%= reading.questions.count %>: <%= f.radio_button(:reading_id, reading.id) %> </br>
+  <% end %>
+  <br>
+  ----------------
+  <br>
+  Choose Listening part:</br>
+  <% Listening.all.each do |listening| %>
+    Listening<%= listening.questions.count %>: <%= f.radio_button(:listening_id, listening.id) %>  <br>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

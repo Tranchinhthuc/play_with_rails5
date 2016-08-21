@@ -1,0 +1,48 @@
+<%= form_for [@examination, @answer_sheet] do |f| %>
+  <%= render "shared/error_messages", object: @answer_sheet %>
+  <% index = 1 %>
+  <% @answer_sheet.answers.build %>
+  <div class="col-md-10">
+    <% @questions_by_part.each do |question_type, questions| %>
+      <h3><%= SysConst::QUESTION_TYPE_TO_STRING_2[question_type].upcase %></h3>
+      <p><b>Directions: </b><%= SysConst::DIRECTIONS_BY_PART[question_type] %></p>
+      <% questions.each do |question|  %>
+        <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
+        <div><%= audio_tag(question.audio, controls: true) if question_type.in? [:part_three, :part_four] %></div>
+        <div><%= question.content.html_safe if(question.content && question_type.in?(SysConst::READING_TYPES)) %></div>
+        <% question.sub_questions.each do |sub_question| %>
+          <%= f.fields_for :answers do |builder| %>
+            <div class="question">
+
+              <b><%= "Question #{index}." %></b>
+              <% if question_type.in? SysConst::LISTENING_TYPES %>
+                <% if question_type == :part_one %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <%= audio_tag(question.audio, controls: true) %>
+                      <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
+                    </div>
+                    <div class="col-md-6">
+                      <%= image_tag(question.photo.in_examination.url) %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div>
+                    <%= audio_tag(question.audio, controls: true) if question_type == :part_two %>
+                    <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
+                <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
+              <% end %>
+            </div>
+            <% index += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
+    <%= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
+  </div>
+<% end %>

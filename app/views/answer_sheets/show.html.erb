@@ -1,0 +1,74 @@
+<h1>Result:</h1>
+<% index = 1 %>
+<div class="col-md-10">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tests</th>
+        <th>Part</th>
+        <th>Score</th>
+        <th>Test date</th>
+        <th>Actions</th>
+        <!-- <th>Rate</th> -->
+        <!-- <th>Best score</th> -->
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>Test <%= @answer_sheet.examination.id %></td>
+            <td><%= @answer_sheet.answer_sheet_type.upcase %></td>
+            <td><%= @answer_sheet.score %>/100</td>
+            <td><%= @answer_sheet.created_at.strftime('%r - %x') %></td>
+            <td>
+              <%= link_to "Test again", new_examination_answer_sheet_path(@answer_sheet.examination,
+                answer_sheet_type: @answer_sheet.answer_sheet_type) %>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>Details:</h2>
+  <hr>
+
+  <% @questions_by_part.each do |question_type, questions| %>
+    <h3><%= SysConst::QUESTION_TYPE_TO_STRING_2[question_type].upcase %></h3>
+    <p><b>Directions: </b><%= SysConst::DIRECTIONS_BY_PART[question_type] %></p>
+    <% questions.each do |question|  %>
+      <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
+      <div><%= audio_tag(question.audio, controls: true) if question_type.in? [:part_three, :part_four] %></div>
+      <div><%= question.content.html_safe if(question.content && question_type.in?(SysConst::READING_TYPES)) %></div>
+      <% question.sub_questions.each do |sub_question| %>
+        <%#= f.fields_for :answers do |builder| %>
+          <div class="question">
+
+            <b><%= "Question #{index}." %></b>
+            <% if question_type.in? SysConst::LISTENING_TYPES %>
+              <% if question_type == :part_one %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= audio_tag(question.audio, controls: true) %>
+                    <%= render "options", sub_question: sub_question %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= image_tag(question.photo.in_examination.url) %>
+                  </div>
+                </div>
+              <% else %>
+                <div>
+                  <%= audio_tag(question.audio, controls: true) if question_type == :part_two %>
+                  <%= render "options", sub_question: sub_question %>
+                </div>
+              <% end %>
+            <% else %>
+              <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
+              <%= render "options", sub_question: sub_question %>
+            <% end %>
+          </div>
+          <% index += 1 %>
+        <%# end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%#= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
+  <%#= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
+</div>
