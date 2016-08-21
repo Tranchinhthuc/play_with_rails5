@@ -1,0 +1,7 @@
+<% sub_question.options.each_with_index do |option, index| %>
+  <div>
+    <%= builder.label :option_id, SysConst::OPTION_TO_STRING[index] %>
+    <%= builder.radio_button :option_id, option.id %>
+    <%= option.content unless question_type.in?([:part_one, :part_two]) %>
+  </div>
+<% end %>

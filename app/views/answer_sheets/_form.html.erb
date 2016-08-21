@@ -20,13 +20,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <%= audio_tag(question.audio, controls: true) %>
-                      <% sub_question.options.each_with_index do |option, index| %>
-                        <div>
-                          <%= builder.label :option_id, SysConst::OPTION_TO_STRING[index] %>
-                          <%= builder.radio_button :option_id, option.id %>
-                          <%= option.content %>
-                        </div>
-                      <% end %>
+                      <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
                     </div>
                     <div class="col-md-6">
                       <%= image_tag(question.photo.in_examination.url) %>
@@ -35,24 +29,12 @@
                 <% else %>
                   <div>
                     <%= audio_tag(question.audio, controls: true) if question_type == :part_two %>
-                    <% sub_question.options.each_with_index do |option, index| %>
-                      <div>
-                        <%= builder.label :option_id, SysConst::OPTION_TO_STRING[index] %>
-                        <%= builder.radio_button :option_id, option.id %>
-                        <%= option.content %>
-                      </div>
-                    <% end %>
+                    <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
                   </div>
                 <% end %>
               <% else %>
                 <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
-                <% sub_question.options.each_with_index do |option, index| %>
-                  <div>
-                    <%= builder.label :option_id, SysConst::OPTION_TO_STRING[index] %>
-                    <%= builder.radio_button :option_id, option.id %>
-                    <%= option.content %>
-                  </div>
-                <% end %>
+                <%= render "build_options", sub_question: sub_question, builder: builder, question_type: question_type %>
               <% end %>
             </div>
             <% index += 1 %>
