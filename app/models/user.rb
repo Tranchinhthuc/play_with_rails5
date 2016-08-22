@@ -54,7 +54,7 @@ class User < ApplicationRecord
       if user = User.find_by(email: auth.info.email)
         user.update_attributes(provider: auth.provider,
           uid: auth.uid, facebook_token: auth.credentials.token,
-          remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large") if user.ordinary_user?
+          remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large")
       end
     end
     user
