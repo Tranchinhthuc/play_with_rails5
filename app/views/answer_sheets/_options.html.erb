@@ -1,0 +1,16 @@
+<% sub_question.options.each_with_index do |option, option_index| %>
+  <div>
+    <% if option.choosen_option_in(@answer_sheet)[:choosen] %>
+      <%#= radio_button_tag "option#{index}", '', true, disabled: true %>
+      <span class="<%= option.choosen_option_in(@answer_sheet)[:correct] ? 'correct-answer' : 'wrong-answer' %>"><%= SysConst::OPTION_TO_STRING[option_index] %>
+        <%= option.content %>
+      </span>
+    <% else %>
+      <%#= radio_button_tag "option#{index}", '', false, disabled: true %>
+      <span class="<%= option.correct ? 'correct-option' : 'wrong-option' %>">
+        <%= SysConst::OPTION_TO_STRING[option_index] %>
+        <%= option.content %>
+      </span>
+    <% end %>
+  </div>
+<% end %>
