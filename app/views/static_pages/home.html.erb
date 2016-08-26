@@ -23,6 +23,8 @@
 
           <div class="form-actions">
             <%= f.button :submit, "Sign up", class: "btn btn-success" %>
+            <%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, "facebook"),
+              class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
@@ -30,10 +32,8 @@
         <h2>Introduction</h2>
         <p>
           Register a free account to do tests now.<br>
-          You will get result of a test immediately after you submit.<br>
+          You will get result immediately after submiting.<br>
           You can login with your facebook account. <br>
-          <%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, "facebook"),
-          class: "btn btn-primary" %>
         </p>
       </div>
     </div>
