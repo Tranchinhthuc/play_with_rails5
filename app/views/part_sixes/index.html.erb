@@ -1,0 +1,25 @@
+<%= render "shared/page_title", title: "Your contributed questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="level-column">Level</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Approved</th>
+      <th class="level-column" title="Deined reason only">Reason(?)</th>
+      <th class="action-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @part_sixes.each_with_index do |part_six, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= part_six.level_s %></td>
+        <td><%= part_six.point %></td>
+        <td><%= part_six.approved_status %></td>
+        <td><%= part_six.note %></td>
+        <td><%= link_to "show", part_six_path(part_six) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

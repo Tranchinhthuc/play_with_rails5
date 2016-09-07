@@ -1,35 +1,34 @@
-<div class="col-md-8 col-md-offset-2">
-  <% if @answer_sheets.present? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Tests</th>
-          <th>Part</th>
-          <th>Score</th>
-          <th>Test date</th>
-          <th>Actions</th>
-          <!-- <th>Rate</th> -->
-          <!-- <th>Best score</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        <% @answer_sheets.each do |answer_sheet| %>
-            <tr>
-              <td>Test <%= answer_sheet.examination.id %></td>
-              <td><%= answer_sheet.answer_sheet_type.upcase %></td>
-              <td><%= answer_sheet.score %>/100</td>
-              <td><%= answer_sheet.created_at.strftime('%r - %x') %></td>
-              <td>
-                <%= link_to "Test again", new_examination_answer_sheet_path(answer_sheet.examination,
-                  answer_sheet_type: answer_sheet.answer_sheet_type) %> |
-                <%= link_to "Show details", answer_sheet_path(answer_sheet) %>
-              </td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <h1>You haven't done any test. Test now!</h1>
-    <%= link_to "Available Examinations", examinations_path %>
-  <% end %>
-</div>
+<%= render "shared/page_title", title: "Results" %>
+<% if @answer_sheets.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tests</th>
+        <th>Part</th>
+        <th>Score</th>
+        <th>Test date</th>
+        <th>Actions</th>
+        <!-- <th>Rate</th> -->
+        <!-- <th>Best score</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @answer_sheets.each do |answer_sheet| %>
+          <tr>
+            <td>Test <%= answer_sheet.examination.id %></td>
+            <td><%= answer_sheet.answer_sheet_type.upcase %></td>
+            <td><%= answer_sheet.score %>/100</td>
+            <td><%= answer_sheet.created_at.strftime('%r - %x') %></td>
+            <td>
+              <%= link_to "Test again", new_examination_answer_sheet_path(answer_sheet.examination,
+                answer_sheet_type: answer_sheet.answer_sheet_type) %> |
+              <%= link_to "Show details", answer_sheet_path(answer_sheet) %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h1>You haven't done any test. Test now!</h1>
+  <%= link_to "Available Examinations", examinations_path %>
+<% end %>

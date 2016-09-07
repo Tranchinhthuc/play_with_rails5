@@ -10,6 +10,8 @@ gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'summernote-rails'
 gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
+gem "font-awesome-rails"
 gem 'simple_form'
 gem 'carrierwave'
 gem "mini_magick"

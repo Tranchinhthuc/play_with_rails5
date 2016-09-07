@@ -14,6 +14,7 @@ class AnswerSheetsController < ApplicationController
   end
 
   def new
+    current_user.update_attribute(:point, current_user.point - 500)
     @examination = Examination.find params[:examination_id]
     @questions = (params[:answer_sheet_type] == "listening") ? @examination.listening.questions : @examination.reading.questions
     @questions_by_part = questions_by_part @questions, params[:answer_sheet_type]
@@ -25,6 +26,7 @@ class AnswerSheetsController < ApplicationController
     @answer_sheet = @examination.answer_sheets.build permit_params
     @answer_sheet.examinee = current_user
     if @answer_sheet.save
+      current_user.update_attribute(:point, current_user.point - 1500)
       redirect_to answer_sheet_path(@answer_sheet)
     else
       @questions = (answer_sheet.answer_sheet_type == "listening") ? @examination.listening.questions : @examination.reading.questions

@@ -1,6 +1,6 @@
-<h1>Result:</h1>
+<%= render "shared/page_title", title: "Result" %>
 <% index = 1 %>
-<div class="col-md-10">
+<!-- <div class="col-md-10"> -->
   <table class="table">
     <thead>
       <tr>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
           <tr>
-            <td>Test <%= @answer_sheet.examination.id %></td>
+            <td>Test <%= @examination.id %></td>
             <td><%= @answer_sheet.answer_sheet_type.upcase %></td>
             <td><%= @answer_sheet.score %>/100</td>
             <td><%= @answer_sheet.created_at.strftime('%r - %x') %></td>
@@ -40,8 +40,7 @@
       <% question.sub_questions.each do |sub_question| %>
         <%#= f.fields_for :answers do |builder| %>
           <div class="question">
-
-            <b><%= "Question #{index}." %></b>
+            <b class="<%= sub_question.hasnt_answer_in?(@answer_sheet) ? 'no-answer' : '' %>"><%= "Question #{index}." %></b>
             <% if question_type.in? SysConst::LISTENING_TYPES %>
               <% if question_type == :part_one %>
                 <div class="row">
@@ -71,4 +70,4 @@
   <% end %>
   <%#= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
   <%#= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
-</div>
+<!-- </div> -->
