@@ -1,0 +1,29 @@
+<div class="sub_questions">
+  <%= f.label :content, "Question #{1}" %>.<br />
+  <%= f.text_field :content, :rows => 3, class: "form-control" %><br />
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="option-column">Option</th>
+        <th class="content-column">Content</th>
+        <th class="correct-column">Correct?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :options do |option_builder| %>
+        <tr>
+          <td>
+            <%= SysConst::OPTION_TO_STRING[option_builder.index] %>
+          </td>
+          <td>
+            <%= option_builder.text_field :content, class: "form-control option" %>
+          </td>
+          <td>
+            <%= option_builder.check_box :correct %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <span class="remove-field"><%= link_to_remove_fields "remove question", f %></span>
+</div>

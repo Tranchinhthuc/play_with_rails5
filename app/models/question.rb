@@ -4,6 +4,12 @@ class Question < ApplicationRecord
 
   scope :index, -> { all }
 
+  enum approved_status: {
+    waiting: 1,
+    denied: 2,
+    approved: 3
+  }
+
   def correct_option_s
     # SysConst::PART_1_2_OPTIONS.key(correct_option)
   end

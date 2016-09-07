@@ -52,7 +52,10 @@ module StandardActions
   def update_with_sub_questions
     klass, object_name, objects_name = preparation
     instance_variable_set(:"@#{object_name}", obj = klass.find(params[:id]))
-    if instance_variable_get(:"@#{object_name}").update_attributes(params[object_name.to_sym])
+    question = instance_variable_get(:"@#{object_name}")
+    if question.update_attributes(params[object_name.to_sym])
+      question.sub_questions_attributes = params[object_name.to_sym][:sub_questions_attributes]
+      question.sub_questions.map(&:save)
       redirect_to [ :admin, instance_variable_get(:"@#{object_name}") ]
     else
       render :edit

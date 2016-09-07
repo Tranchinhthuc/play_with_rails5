@@ -8,19 +8,27 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: "users/sessions"}
 
+  devise_scope :user do
+    authenticated :user do
+      root "examinations#index", as: :authenticated_root
+    end
+    unauthenticated do
+      root "static_pages#home", as: :unauthenticated_root
+    end
+  end
   root 'static_pages#home'
   namespace :admin do
-    resources :part_ones
-    resources :part_twos
-    resources :part_threes
-    resources :part_fours
-    resources :part_fives
-    resources :part_sixes
-    resources :part_seven_ones
-    resources :part_seven_twos
+    SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|
+      resources question_type
+    end
     resources :examinations
     resources :readings
     resources :listenings
   end
+
+  SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|
+    resources question_type, except: [:edit, :update, :destroy]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

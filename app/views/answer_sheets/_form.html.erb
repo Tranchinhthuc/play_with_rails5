@@ -2,7 +2,6 @@
   <%= render "shared/error_messages", object: @answer_sheet %>
   <% index = 1 %>
   <% @answer_sheet.answers.build %>
-  <div class="col-md-10">
     <% @questions_by_part.each do |question_type, questions| %>
       <h3><%= SysConst::QUESTION_TYPE_TO_STRING_2[question_type].upcase %></h3>
       <p><b>Directions: </b><%= SysConst::DIRECTIONS_BY_PART[question_type] %></p>
@@ -43,6 +42,5 @@
       <% end %>
     <% end %>
     <%= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
-    <%= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
-  </div>
+    <%= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-success" %>
 <% end %>

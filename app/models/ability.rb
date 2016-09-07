@@ -14,6 +14,11 @@ class Ability
         can [:read], AnswerSheet do |answer_sheet|
           answer_sheet.examinee == user
         end
+
+        can :create, Question
+        can :read, Question do |question|
+          question.creator == user
+        end
       end
     #
     # The first argument to `can` is the action you are giving the user
