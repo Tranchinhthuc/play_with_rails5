@@ -1,0 +1,63 @@
+<%= simple_form_for(@part_one) do |f| %>
+  <%= render "shared/error_messages", object: @part_one %>
+
+  <table class="table-striped table">
+    <thead>
+      <tr>
+        <th class="option-column">Photo *</th>
+        <th class="content-column">Audio *</th>
+        <th class="correct-column">Level</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <%= f.file_field :photo %>
+          </td>
+          <td>
+            <%= f.file_field :audio %>
+          </td>
+          <td>
+            <%= render "shared_form/level_field", f: f %>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="field">
+    <%= f.fields_for :sub_questions do |sub_question_builder| %>
+      <div class="sub_questions">
+        <table class="table-striped table">
+          <thead>
+            <tr>
+              <th class="option-column">Option</th>
+              <th class="content-column">Lyric/script</th>
+              <th class="correct-column">Correct?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= sub_question_builder.fields_for :options do |option_builder| %>
+              <tr>
+                <td>
+                  <%= SysConst::OPTION_TO_STRING[option_builder.index] %>
+                </td>
+                <td>
+                  <%= option_builder.text_field :content, class: "form-control option" %>
+                </td>
+                <td>
+                  <%= option_builder.check_box :correct %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <%#= render "admin/shared_form/level_field", f: f %>
+  <%= render "shared_form/explanation_field", f: f %>
+
+  <div class="actions">
+    <%= f.button :submit, "Share question", class: "btn btn-success" %>
+  </div>
+<% end %>

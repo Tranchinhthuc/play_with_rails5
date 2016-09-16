@@ -1,8 +1,8 @@
-<h1><%= params[:answer_sheet_type].upcase %> TEST</h1>
-<div style="float: right;position:fixed;top:147px;right:200px;">
+<%= render "shared/page_title", title: @examination.examination_type.upcase %>
+<div style="float: right;top:147px;right:100px;">
   <b>Time left:
     <span id="time_left">
-      <%= second_to_time SysConst::TEST_TIME_BY_TYPE[params[:answer_sheet_type].to_sym] %>
+      <%#= second_to_time SysConst::TEST_TIME_BY_TYPE[@examination.examination_type.to_sym] %>
     </span>
   </b>
 </div>

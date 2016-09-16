@@ -12,8 +12,42 @@
   color: white;
 }
 
+.tip-trick {
+  color: #438043;
+}
+
+.nav-pills > li.active > a:focus {
+  background-color: #5cb85c;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+  background-color: #5cb85c;
+}
+
+.nav-pills > li > a {
+  background-color: #82B54A;
+  color: white;
+}
+
+.nav-pills > li > a:hover {
+  background-color: #329632;
+}
+
+.nav-pills > li.active > a:hover {
+  background-color: #329632;
+}
+
+.side-bar {
+  margin-top: 26px;
+}
+
 .navbar {
   min-height: 100px;
+}
+
+.menu-btn {
+  border-radius: 45px;
+  height: 46px;
 }
 
 #user-side-menu {
@@ -22,7 +56,7 @@
 }
 
 .dropdown-menu{
-  margin-left: 300px;
+  margin-left: 230px;
 }
 // .menu-link {
 //   height: 50px;
@@ -37,4 +71,67 @@ body {
 
 .alert-notice {
   color: green;
+}
+
+.page-title {
+  background-color: green;
+  color: white;
+  background: linear-gradient(#5CB85C, #82B54A);
+  width: 70%;
+}
+
+.page-tabs {
+  background-color: green;
+  color: white;
+  background: linear-gradient(#438043, #82B54A);
+  width: 100%;
+}
+
+.footer {
+  height: 200px;
+  margin:20px;
+}
+
+.option-column {
+  width: 10%;
+}
+
+.content-column {
+  width: 80%;
+}
+
+.correct-column {
+  width: 10%;
+}
+
+.table {
+  width: 100%;
+}
+
+.main-question-content {
+  margin-top: 40px;
+}
+
+.question-option {
+  margin-top: 20px;
+}
+
+.contribute-button {
+  margin-top: 24px;
+}
+
+.order-column {
+  width: 10%;
+}
+.audio-column {
+  width: 40%;
+}
+.photo-column {
+  width: 20%;
+}
+.level-column {
+  width: 10%;
+}
+.action-column {
+  width: 10%;
 }

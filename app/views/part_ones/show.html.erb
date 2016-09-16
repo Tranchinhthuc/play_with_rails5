@@ -1,0 +1,18 @@
+<%= render "shared/page_title", title: "Question details" %>
+<div class="row box-with-border">
+  <div class="col-md-6">
+    <%= audio_tag(@part_one.audio, controls: true) %>
+    <% @part_one.sub_questions.first.options.each_with_index do |option, index| %>
+      <div class="<%= option.correct ? 'correct-option' : 'wrong-option' %> question-option">
+        <%= SysConst::OPTION_TO_STRING[index] %>.
+        <%= option.content %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= image_tag(@part_one.photo.in_examination.url) %>
+  </div>
+  <b>Explanation:</b>
+  <p><%= @part_one.explanation.html_safe %></p>
+</div>
+

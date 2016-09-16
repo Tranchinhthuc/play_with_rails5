@@ -45,7 +45,8 @@ class User < ApplicationRecord
     create( provider: auth.provider, uid: uid, email: email, full_name: full_name,
             password: Devise.friendly_token[0,20],
             facebook_token: auth.credentials.token,
-            remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large"
+            remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large",
+            point: 3900
           )
   end
 

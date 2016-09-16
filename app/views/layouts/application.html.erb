@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ToeicTest</title>
+    <title>Test Right Now</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,7 +14,7 @@
         <div class="row">
           <nav class="navbar navbar-inverse">
             <div class="col-md-4">
-              <h1><%= link_to "ToeicTestSystem", root_path, style: "color: white; text-decoration: none;" %></h1>
+              <h1><%= link_to "TestRightNow.Com", root_path, style: "color: white; text-decoration: none;" %></h1>
             </div>
             <div class="col-md-8"><%= render "shared/header" %></div>
           </nav>
@@ -22,12 +22,68 @@
       </div>
     </header>
 
-    <div class="container col-md-10 col-md-offset-1">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <div class="container">
+      <% if user_signed_in? %>
+        <div class="row">
+          <div class="side-bar col-md-3">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search friends..">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div>
+            <h3>Hello, <%= current_user.full_name.present? ? current_user.full_name : current_user.email %> !</h3>
+            <h4 title="Contribute question to get more point">Your points: <%= current_user.point %></h4>
+            <ul class="nav nav-pills nav-stacked">
+              <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
+                <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
+                  <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
+                    Rails.application.routes.url_helpers.send("#{resource.to_s.singularize}_lessons_path") %>
+                </li>
+              <% end %>
+            </ul><br>
+          </div>
+          <div class="col-md-9">
+            <!-- <div class="add"> -->
+              <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
+                <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>
+                <div class="page-tabs">
+                  <ul class="nav nav-pills">
+                      <li class="<%= (controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
+                        <%= link_to "Lessons", Rails.application.routes.url_helpers.send("#{name.singularize}_lessons_path") %>
+                      </li>
+                      <li class="<%= (!controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
+                        <%= link_to "Contribute questions", Rails.application.routes.url_helpers.send("#{name}_path") %>
+                      </li>
+                      <li>
+                        <%= link_to "History", answer_sheets_path %>
+                      </li>
+                  </ul>
+                </div>
+                <%= link_to "Contribute question for us", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
+              <% end %>
+            <!-- </div> -->
+            <% flash.each do |message_type, message| %>
+              <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
+            <% end %>
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
+        <% end %>
+        <%= yield %>
       <% end %>
-      <%= yield %>
     </div>
-    <div class="footer"></div>
+    <div class="container">
+      <div class="row footer">
+        <div class="col-md-12">
+          <%= render "shared/footer" %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
