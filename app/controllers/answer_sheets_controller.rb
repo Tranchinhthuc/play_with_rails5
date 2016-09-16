@@ -9,15 +9,15 @@ class AnswerSheetsController < ApplicationController
   def show
     standard_show
     @examination = @answer_sheet.examination
-    @questions = (@answer_sheet.answer_sheet_type == "listening") ? @examination.listening.questions : @examination.reading.questions
-    @questions_by_part = questions_by_part @questions, @answer_sheet.answer_sheet_type
+    @questions = @examination.questions
+    @questions_by_part = questions_by_part @questions, @examination.examination_type
   end
 
   def new
     current_user.update_attribute(:point, current_user.point - 500)
     @examination = Examination.find params[:examination_id]
-    @questions = (params[:answer_sheet_type] == "listening") ? @examination.listening.questions : @examination.reading.questions
-    @questions_by_part = questions_by_part @questions, params[:answer_sheet_type]
+    @questions = @examination.questions
+    @questions_by_part = questions_by_part @questions, @examination.examination_type
     standard_new
   end
 
@@ -41,19 +41,24 @@ class AnswerSheetsController < ApplicationController
   end
 
   def questions_by_part questions, answer_sheet_type
-    if answer_sheet_type == "listening"
+    case answer_sheet_type
+    when :listening
       @questions_by_part = {
         part_one: @questions.where(type: "PartOne"),
         part_two: @questions.where(type: "PartTwo"),
         part_three: @questions.where(type: "PartThree"),
         part_four: @questions.where(type: "PartFour")
       }
-    else
+    when :reading
       @questions_by_part = {
         part_five: @questions.where(type: "PartFive"),
         part_six: @questions.where(type: "PartSix"),
         part_seven_one: @questions.where(type: "PartSevenOne"),
         part_seven_two: @questions.where(type: "PartSevenTwo")
+      }
+    else
+      @questions_by_part = {
+        answer_sheet_type.to_s.gsub("_lesson", "").to_sym => @questions.where(type: answer_sheet_type.to_s.gsub("_lesson", "").classify)
       }
     end
   end

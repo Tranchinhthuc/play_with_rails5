@@ -1,0 +1,21 @@
+<%= render "shared/page_title", title: "#{SysConst::QUESTION_TYPE_TO_STRING_1[controller_name.gsub("_lessons", "").to_sym]} lessons" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Lessons</th>
+      <th>Action</th>
+      <th>Views</th>
+      <!-- <th>Rate</th> -->
+      <!-- <th>Best score</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% examinations.each do |examination| %>
+        <tr>
+          <td>Lesson <%= examination.id %></td>
+          <td><%= link_to "Practice Now!", new_examination_answer_sheet_path(examination) %></td>
+          <td><%= examination.answer_sheets.count %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

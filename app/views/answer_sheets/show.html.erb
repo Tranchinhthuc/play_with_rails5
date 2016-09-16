@@ -4,8 +4,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Tests</th>
-        <th>Part</th>
+        <th>Lesson</th>
+        <th>Lesson Type</th>
         <th>Score</th>
         <th>Test date</th>
         <th>Actions</th>
@@ -16,7 +16,7 @@
     <tbody>
           <tr>
             <td>Test <%= @examination.id %></td>
-            <td><%= @answer_sheet.answer_sheet_type.upcase %></td>
+            <td><%= @examination.examination_type.upcase %></td>
             <td><%= @answer_sheet.score %>/100</td>
             <td><%= @answer_sheet.created_at.strftime('%r - %x') %></td>
             <td>

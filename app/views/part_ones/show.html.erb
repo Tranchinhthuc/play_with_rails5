@@ -4,7 +4,7 @@
     <%= audio_tag(@part_one.audio, controls: true) %>
     <% @part_one.sub_questions.first.options.each_with_index do |option, index| %>
       <div class="<%= option.correct ? 'correct-option' : 'wrong-option' %> question-option">
-        <%= SysConst::OPTION_TO_STRING[index] %>
+        <%= SysConst::OPTION_TO_STRING[index] %>.
         <%= option.content %>
       </div>
     <% end %>
