@@ -76,8 +76,15 @@ body {
 .page-title {
   background-color: green;
   color: white;
-  background: linear-gradient(#438043, #82B54A);
+  background: linear-gradient(#5CB85C, #82B54A);
   width: 70%;
+}
+
+.page-tabs {
+  background-color: green;
+  color: white;
+  background: linear-gradient(#438043, #82B54A);
+  width: 100%;
 }
 
 .footer {

@@ -22,12 +22,18 @@ Rails.application.routes.draw do
       resources question_type
     end
     resources :examinations
+    SysConst::LESSON_TYPES.each do |lessons|
+      resources lessons
+    end
     resources :readings
     resources :listenings
   end
 
   SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|
     resources question_type, except: [:edit, :update, :destroy]
+  end
+  SysConst::LESSON_TYPES.each do |lessons|
+    resources lessons, only: :index
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

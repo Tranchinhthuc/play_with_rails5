@@ -114,4 +114,10 @@ class SysConst
     listening: 45*60,
     reading: 75*60,
   }
+
+  LESSON_TYPES = [  :part_one_lessons, :part_two_lessons, :part_three_lessons,
+                    :part_four_lessons, :part_five_lessons, :part_six_lessons,
+                    :part_seven_one_lessons, :part_seven_two_lessons,
+                    :reading_lessons, :listenting_lessons
+  ]
 end

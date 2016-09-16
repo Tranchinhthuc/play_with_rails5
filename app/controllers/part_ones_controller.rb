@@ -17,4 +17,8 @@ class PartOnesController < ApplicationController
   def create
     create_with_sub_questions
   end
+
+  def lessons
+
+  end
 end

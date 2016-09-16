@@ -3,8 +3,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Tests</th>
-        <th>Part</th>
+        <th>Tests/Lessons</th>
+        <th>Type</th>
         <th>Score</th>
         <th>Test date</th>
         <th>Actions</th>
@@ -15,13 +15,12 @@
     <tbody>
       <% @answer_sheets.each do |answer_sheet| %>
           <tr>
-            <td>Test <%= answer_sheet.examination.id %></td>
-            <td><%= answer_sheet.answer_sheet_type.upcase %></td>
+            <td><%= answer_sheet.examination.id %></td>
+            <td><%= answer_sheet.examination.examination_type.try(:upcase) %></td>
             <td><%= answer_sheet.score %>/100</td>
             <td><%= answer_sheet.created_at.strftime('%r - %x') %></td>
             <td>
-              <%= link_to "Test again", new_examination_answer_sheet_path(answer_sheet.examination,
-                answer_sheet_type: answer_sheet.answer_sheet_type) %> |
+              <%= link_to "Test again", new_examination_answer_sheet_path(answer_sheet.examination) %> |
               <%= link_to "Show details", answer_sheet_path(answer_sheet) %>
             </td>
           </tr>
