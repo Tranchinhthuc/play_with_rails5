@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
   root 'static_pages#home'
+  get '/baokim_ed2f2d19466b8542.html' => 'static_pages#baokim'
   namespace :admin do
     SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|
       resources question_type
