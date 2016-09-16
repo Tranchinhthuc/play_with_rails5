@@ -5,4 +5,8 @@ class StaticPagesController < ApplicationController
   def baokim
     render layout: false
   end
+
+  def nganluong
+    render layout: false
+  end
 end
