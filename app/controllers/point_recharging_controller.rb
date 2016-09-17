@@ -1,4 +1,6 @@
 class PointRechargingController < ApplicationController
+  before_action :authenticate_user!
+
   require 'net/http'
   require 'net/https'
 
