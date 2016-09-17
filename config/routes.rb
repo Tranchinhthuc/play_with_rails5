@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       root "static_pages#home", as: :unauthenticated_root
     end
   end
+
+  resources :point_recharging, only: [:new, :create]
+
   root 'static_pages#home'
   get '/baokim_ed2f2d19466b8542.html' => 'static_pages#baokim'
   get '/nganluong_5f7805dbf7c25c1d449f32552ec4a8bb.html' => 'static_pages#nganluong'

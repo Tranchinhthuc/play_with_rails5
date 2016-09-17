@@ -28,4 +28,5 @@ class Examination < ApplicationRecord
   scope :part_seven_two_lessons, -> { where examination_type: :part_seven_two_lesson }
   scope :reading, -> { where examination_type: :reading }
   scope :listenting, -> { where examination_type: :listenting }
+  scope :half_test, -> { where examination_type: [:listenting, :reading]}
 end
