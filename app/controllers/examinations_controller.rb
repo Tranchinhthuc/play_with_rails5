@@ -2,6 +2,6 @@ class ExaminationsController < ApplicationController
   include StandardActions
 
   def index
-    standard_index
+    @examinations = Examination.half_test
   end
 end

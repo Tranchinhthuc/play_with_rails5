@@ -120,4 +120,16 @@ class SysConst
                     :part_seven_one_lessons, :part_seven_two_lessons,
                     :reading_lessons, :listenting_lessons
   ]
+
+  MERCHANT_ID = 47668
+  MERCHANT_ACCOUNT = "thuctc91@gmail.com"
+  MERCHANT_PASSWORD = Digest::MD5.hexdigest('47668' + "|" + "7f8040ee2a1462014f03d5cd1d57c3aa")
+  MERCHANT_MOBILE = "01649614008"
+
+  AVAILABLE_TYPE_CARDS = {
+    viettel: ["Thẻ cào Viettel", "VIETTEL"],
+    vinaphone: ["Thẻ cào VinaPhone", "VNP"],
+    mobilephoe: ["Thẻ cào MobiFone", "VMS"],
+    vtc_gate: ["Thẻ cào FPT Gate", "GATE"]
+  }
 end

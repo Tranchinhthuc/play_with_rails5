@@ -3,8 +3,7 @@
   <thead>
     <tr>
       <th>Tests</th>
-      <th>Listening</th>
-      <th>Reading</th>
+      <th>Type</th>
       <th>Views</th>
       <!-- <th>Rate</th> -->
       <!-- <th>Best score</th> -->
@@ -14,8 +13,7 @@
     <% @examinations.each do |examination| %>
         <tr>
           <td>Test <%= examination.id %></td>
-          <td><%= link_to "Listening", new_examination_answer_sheet_path(examination, answer_sheet_type: "listening") %></td>
-          <td><%= link_to "Reading", new_examination_answer_sheet_path(examination, answer_sheet_type: "reading") %></td>
+          <td><%= link_to examination.examination_type, new_examination_answer_sheet_path(examination) %></td>
           <td><%= examination.answer_sheets.count %></td>
         </tr>
     <% end %>
