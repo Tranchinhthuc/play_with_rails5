@@ -26,16 +26,14 @@
       <% if user_signed_in? %>
         <div class="row">
           <div class="side-bar col-md-3">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search friends..">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div>
             <h3>Hello, <%= current_user.full_name.present? ? current_user.full_name : current_user.email %> !</h3>
-            <h4 title="Contribute question to get more point">Your points: <%= current_user.point %></h4>
+            <h4 title="Contribute question to get more point">
+              Your points: <%= current_user.point %>!
+              <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline;" %>
+            </h4>
+            <p class="recharging_guide">
+              Bạn có thể chia sẻ câu hỏi cho chúng tôi để thêm nhận points.
+            </p>
             <ul class="nav nav-pills nav-stacked">
               <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
                 <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
@@ -55,14 +53,14 @@
                         <%= link_to "Lessons", Rails.application.routes.url_helpers.send("#{name.singularize}_lessons_path") %>
                       </li>
                       <li class="<%= (!controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
-                        <%= link_to "Contribute questions", Rails.application.routes.url_helpers.send("#{name}_path") %>
+                        <%= link_to "Câu hỏi đã chia sẻ", Rails.application.routes.url_helpers.send("#{name}_path") %>
                       </li>
                       <li>
                         <%= link_to "History", answer_sheets_path %>
                       </li>
                   </ul>
                 </div>
-                <%= link_to "Contribute question for us", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
+                <%= link_to "Chia sẻ câu hỏi của bạn", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
               <% end %>
             <!-- </div> -->
             <% flash.each do |message_type, message| %>
