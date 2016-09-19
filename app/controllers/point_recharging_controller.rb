@@ -30,7 +30,7 @@ class PointRechargingController < ApplicationController
     result = RespondDataHanding.new.inspect_data respond_data
     if result[:error_code] == "00"
       flash[:notice] = "Giao dịch thành công"
-      current_user.update_attributes(point: current_user.point + result[:card_amount]*1000)
+      current_user.update_attributes(point: current_user.point + result[:card_amount].to_i*1000)
       redirect_to root_path
     else
       flash[:danger] = RespondDataHanding.new.error_raising(result[:error_code])
