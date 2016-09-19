@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   private
   def select_layout
     if current_user.present?
-      "admin" unless current_user.normal?
+      "admin_lte_2" unless current_user.normal?
     end
   end
 end
