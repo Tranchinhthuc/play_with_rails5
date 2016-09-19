@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require summernote
 //= require cocoon
+//= require app
 //= require_tree .
 
 
