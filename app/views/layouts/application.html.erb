@@ -1,85 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Test Right Now</title>
+    <title>Test-Right-Now</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header id="header">
-      <div class="container">
-        <div class="row">
-          <nav class="navbar navbar-inverse">
-            <div class="col-md-4">
-              <h1><%= link_to "TestRightNow.Com", root_path, style: "color: white; text-decoration: none;" %></h1>
+  <body class="skin-blue sidebar-mini fixed <%= params[:controller].parameterize %> <%= action_name %>" style="font-size: 15px"> </body>
+    <div class="wrapper">
+      <dir>
+        <%= render "shared/header" %>
+        <%= render 'shared/left_side_bar' %>
+      </dir>
+      <div class="content-wrapper">
+        <div class="container">
+          <% if user_signed_in? %>
+            <div class="row">
+              <div class="col-md-10">
+                <!-- <div class="add"> -->
+                  <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
+                    <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>
+                    <div class="page-tabs">
+                      <ul class="nav nav-pills">
+                          <li class="<%= (controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
+                            <%= link_to "Lessons", Rails.application.routes.url_helpers.send("#{name.singularize}_lessons_path") %>
+                          </li>
+                          <li class="<%= (!controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
+                            <%= link_to "Câu hỏi đã chia sẻ", Rails.application.routes.url_helpers.send("#{name}_path") %>
+                          </li>
+                      </ul>
+                    </div>
+                    <%= link_to "Chia sẻ câu hỏi của bạn", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
+                  <% end %>
+                <!-- </div> -->
+                <% flash.each do |message_type, message| %>
+                  <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
+                <% end %>
+                <%= yield %>
+              </div>
             </div>
-            <div class="col-md-8"><%= render "shared/header" %></div>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <div class="container">
-      <% if user_signed_in? %>
-        <div class="row">
-          <div class="side-bar col-md-3">
-            <h3>Hello, <%= current_user.full_name.present? ? current_user.full_name : current_user.email %> !</h3>
-            <h4 title="Contribute question to get more point">
-              Your points: <%= current_user.point %>!
-              <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline;" %>
-            </h4>
-            <p class="recharging_guide">
-              Bạn có thể chia sẻ câu hỏi cho chúng tôi để thêm nhận points.
-            </p>
-            <ul class="nav nav-pills nav-stacked">
-              <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
-                <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
-                  <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
-                    Rails.application.routes.url_helpers.send("#{resource.to_s.singularize}_lessons_path") %>
-                </li>
-              <% end %>
-            </ul><br>
-          </div>
-          <div class="col-md-9">
-            <!-- <div class="add"> -->
-              <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
-                <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>
-                <div class="page-tabs">
-                  <ul class="nav nav-pills">
-                      <li class="<%= (controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
-                        <%= link_to "Lessons", Rails.application.routes.url_helpers.send("#{name.singularize}_lessons_path") %>
-                      </li>
-                      <li class="<%= (!controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
-                        <%= link_to "Câu hỏi đã chia sẻ", Rails.application.routes.url_helpers.send("#{name}_path") %>
-                      </li>
-                      <li>
-                        <%= link_to "History", answer_sheets_path %>
-                      </li>
-                  </ul>
-                </div>
-                <%= link_to "Chia sẻ câu hỏi của bạn", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
-              <% end %>
-            <!-- </div> -->
+          <% else %>
             <% flash.each do |message_type, message| %>
               <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
             <% end %>
-            <%= yield %>
-          </div>
+            <section class="content">
+              <% if notice %>
+                <div class="alert alert-success alert-dismissable">
+                  <i class="fa fa-check"></i>
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <b><%= notice %></b>
+                </div>
+              <% end %>
+
+              <% if alert %>
+                <div class="alert alert-danger alert-dismissable">
+                  <i class="fa fa-ban"></i>
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <b><%= alert %></b>
+                </div>
+              <% end %>
+              <%= yield %>
+            </section>
+          <% end %>
         </div>
-      <% else %>
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
-        <% end %>
-        <%= yield %>
-      <% end %>
-    </div>
-    <div class="container">
-      <div class="row footer">
-        <div class="col-md-12">
-          <%= render "shared/footer" %>
+        <div class="container">
+          <div class="row footer">
+            <div class="col-md-12">
+              <%= render "shared/footer" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

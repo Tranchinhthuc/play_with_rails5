@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require turbolinks
-//= require bootstrap
 //= require jquery
+//= require bootstrap
 //= require jquery_ujs
-//= require bootstrap-sprockets
 //= require summernote
 //= require cocoon
 //= require app
