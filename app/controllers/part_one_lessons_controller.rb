@@ -1,4 +1,5 @@
 class PartOneLessonsController < ApplicationController
+  before_action :authenticate_user!
   include LessonStandardActions
 
   def index

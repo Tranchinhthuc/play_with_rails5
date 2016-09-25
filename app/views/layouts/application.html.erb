@@ -45,9 +45,6 @@
               </div>
             </div>
           <% else %>
-            <% flash.each do |message_type, message| %>
-              <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
-            <% end %>
             <section class="content">
               <% if notice %>
                 <div class="alert alert-success alert-dismissable">
