@@ -5,8 +5,8 @@ class Examination < ApplicationRecord
   belongs_to :creator, class_name: "User"
 
   enum examination_type: {
-    reading: 1,
-    listenting: 2,
+    reading_lesson: 1,
+    listening_lesson: 2,
     part_one_lesson: 3,
     part_two_lesson: 4,
     part_three_lesson: 5,
@@ -26,7 +26,11 @@ class Examination < ApplicationRecord
   scope :part_six_lessons, -> { where examination_type: :part_six_lesson }
   scope :part_seven_one_lessons, -> { where examination_type: :part_seven_one_lesson }
   scope :part_seven_two_lessons, -> { where examination_type: :part_seven_two_lesson }
-  scope :reading, -> { where examination_type: :reading }
-  scope :listenting, -> { where examination_type: :listenting }
-  scope :half_test, -> { where examination_type: [:listenting, :reading]}
+  scope :reading_lessons, -> { where examination_type: :reading_lesson }
+  scope :listening_lessons, -> { where examination_type: :listening_lesson }
+  scope :half_test, -> { where examination_type: [:listening_lesson, :reading_lesson]}
+
+  def examination_type_s
+    SysConst::LESSON_TYPE_TO_STRING[examination_type.to_sym]
+  end
 end

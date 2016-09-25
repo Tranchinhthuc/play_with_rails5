@@ -1,0 +1,31 @@
+<%= render "shared/page_title", title: "Your contributed questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="audio-column">Full name</th>
+      <th class="level-column">Email</th>
+      <th class="level-column">Avatar</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.avatar.url.present? %>
+            <%= image_tag(user.avatar.in_avatar.url, size: "100x100") %>
+          <% else %>
+            <%= image_tag("http://bountytechgaming.com/uploads/avatars/avatar_4202.jpg", size: "100x100") %>
+          <% end -%>
+        </td>
+        <td><%= user.point %></td>
+        <td><%= link_to "show", admin_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -17,7 +17,7 @@ class AnswerSheetsController < ApplicationController
     current_user.update_attribute(:point, current_user.point - 500)
     @examination = Examination.find params[:examination_id]
     @questions = @examination.questions
-    @questions_by_part = questions_by_part @questions, @examination.examination_type
+    questions_by_part @questions, @examination.examination_type
     standard_new
   end
 
@@ -41,15 +41,15 @@ class AnswerSheetsController < ApplicationController
   end
 
   def questions_by_part questions, answer_sheet_type
-    case answer_sheet_type
-    when :listening
+    case answer_sheet_type.to_sym
+    when :listening_lesson
       @questions_by_part = {
         part_one: @questions.where(type: "PartOne"),
         part_two: @questions.where(type: "PartTwo"),
         part_three: @questions.where(type: "PartThree"),
         part_four: @questions.where(type: "PartFour")
       }
-    when :reading
+    when :reading_lesson
       @questions_by_part = {
         part_five: @questions.where(type: "PartFive"),
         part_six: @questions.where(type: "PartSix"),

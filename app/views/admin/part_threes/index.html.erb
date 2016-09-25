@@ -1,9 +1,27 @@
-<ul>
-  <% @part_threes.each do |part_three| %>
-    <%= audio_tag part_three.audio, controls: true %> |
-    <%= link_to "show", admin_part_three_path(part_three) %> |
-    <%= link_to "edit", edit_admin_part_three_path(part_three) %> |
-    <%= link_to "delete", admin_part_three_path(part_three), method: :delete,
-          data: { confirm: 'Are you sure?' } %> <br>
-  <% end %>
-</ul>
+<%= render "shared/page_title", title: "Your contributed questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="audio-column">Audio</th>
+      <th class="level-column">Level</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Approved</th>
+      <th class="level-column" title="Deined reason only">Reason(?)</th>
+      <th class="action-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @part_threes.each_with_index do |part_three, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= audio_tag part_three.audio, controls: true %></td>
+        <td><%= part_three.level_s %></td>
+        <td><%= part_three.point %></td>
+        <td><%= part_three.approved_status %></td>
+        <td><%= part_three.note %></td>
+        <td><%= link_to "show", part_three_path(part_three) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

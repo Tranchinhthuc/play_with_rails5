@@ -76,7 +76,22 @@ class SysConst
     part_five: "Part 5 - Incomplete Sentences",
     part_six: "Part 6 - Text Completion",
     part_seven_one: "Part 7 - Single passage",
-    part_seven_two: "Part 7 - Double passage"
+    part_seven_two: "Part 7 - Double passage",
+    reading: "Reading",
+    listening: "Listening"
+  }
+
+  LESSON_TYPE_TO_STRING = {
+    part_one_lesson: "Part 1 - Photo",
+    part_two_lesson: "Part 2 - Question-Response",
+    part_three_lesson: "Part 3 - Short conversation",
+    part_four_lesson: "Part 4 - Short Talks",
+    part_five_lesson: "Part 5 - Incomplete Sentences",
+    part_six_lesson: "Part 6 - Text Completion",
+    part_seven_one_lesson: "Part 7 - Single passage",
+    part_seven_two_lesson: "Part 7 - Double passage",
+    reading_lesson: "Reading",
+    listening_lesson: "Listening"
   }
 
   COUNT_OF_OPTIONS = {
@@ -91,6 +106,12 @@ class SysConst
   }
 
   RESOURCES_TOEIC_QUESTION_TYPES = [
+    :part_ones, :part_twos, :part_threes, :part_fours,
+    :part_fives, :part_sixes, :part_seven_ones, :part_seven_twos,
+    :reading, :listening
+  ]
+
+  USER_SIDE_RESOURCES_TOEIC_QUESTION_TYPES = [
     :part_ones, :part_twos, :part_threes, :part_fours,
     :part_fives, :part_sixes, :part_seven_ones, :part_seven_twos
   ]
@@ -118,7 +139,7 @@ class SysConst
   LESSON_TYPES = [  :part_one_lessons, :part_two_lessons, :part_three_lessons,
                     :part_four_lessons, :part_five_lessons, :part_six_lessons,
                     :part_seven_one_lessons, :part_seven_two_lessons,
-                    :reading_lessons, :listenting_lessons
+                    :reading_lessons, :listening_lessons
   ]
 
   MERCHANT_ID = 47668

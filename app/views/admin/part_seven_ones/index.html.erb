@@ -1,9 +1,25 @@
-<ul>
-  <% @part_seven_ones.each do |part_seven_one| %>
-    <%= part_seven_one.content.html_safe %> |
-    <%= link_to "show", admin_part_seven_one_path(part_seven_one) %> |
-    <%= link_to "edit", edit_admin_part_seven_one_path(part_seven_one) %> |
-    <%= link_to "delete", admin_part_seven_one_path(part_seven_one), method: :delete,
-          data: { confirm: 'Are you sure?' } %> <br>
-  <% end %>
-</ul>
+<%= render "shared/page_title", title: "Your contributed questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="level-column">Level</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Approved</th>
+      <th class="level-column" title="Deined reason only">Reason(?)</th>
+      <th class="action-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @part_seven_ones.each_with_index do |part_seven_one, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= part_seven_one.level_s %></td>
+        <td><%= part_seven_one.point %></td>
+        <td><%= part_seven_one.approved_status %></td>
+        <td><%= part_seven_one.note %></td>
+        <td><%= link_to "show", part_seven_one_path(part_seven_one) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

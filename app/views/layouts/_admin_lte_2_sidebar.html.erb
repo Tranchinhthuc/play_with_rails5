@@ -5,14 +5,18 @@
   <section class="sidebar">
 
     <!-- Sidebar user panel (optional) -->
+
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" />
+        <% if current_user.avatar.url.present? %>
+          <%= image_tag(current_user.avatar.in_avatar.url, class: "img-circle") %>
+        <% else %>
+          <%= image_tag("http://bountytechgaming.com/uploads/avatars/avatar_4202.jpg", class: "img-circle") %>
+        <% end -%>
+        <!-- <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
-        <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        <p>Hello! <%= current_user.full_name.present? ? current_user.full_name : current_user.email %></p>
       </div>
     </div>
 
@@ -29,9 +33,17 @@
 
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">HEADER</li>
+        <!-- <ul class="nav nav-pills nav-stacked"> -->
+          <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
+            <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
+              <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
+                Rails.application.routes.url_helpers.send("admin_#{resource.to_s.singularize}_lessons_path") %>
+            </li>
+          <% end %>
+        <!-- </ul><br> -->
+      <!-- <li class="header">HEADER</li> -->
         <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><i class='fa fa-link'></i> <span>Link</span></a></li>
+<!--       <li class="active"><a href="#"><i class='fa fa-link'></i> <span>Link</span></a></li>
       <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>
       <li class="treeview">
         <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -39,7 +51,7 @@
           <li><a href="#">Link in level 2</a></li>
           <li><a href="#">Link in level 2</a></li>
         </ul>
-      </li>
+      </li> -->
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->

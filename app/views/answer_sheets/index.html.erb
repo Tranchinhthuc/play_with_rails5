@@ -16,8 +16,8 @@
       <% @answer_sheets.each do |answer_sheet| %>
           <tr>
             <td><%= answer_sheet.examination.id %></td>
-            <td><%= answer_sheet.examination.examination_type.try(:upcase) %></td>
-            <td><%= answer_sheet.score %>/100</td>
+            <td><%= answer_sheet.examination.examination_type_s %></td>
+            <td><%= answer_sheet.score %>/<%= answer_sheet.examination.questions.count %></td>
             <td><%= answer_sheet.created_at.strftime('%r - %x') %></td>
             <td>
               <%= link_to "Test again", new_examination_answer_sheet_path(answer_sheet.examination) %> |

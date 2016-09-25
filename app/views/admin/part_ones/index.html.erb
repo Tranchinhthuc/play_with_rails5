@@ -1,9 +1,34 @@
-<ul>
-  <% @part_ones.each do |part_one| %>
-    <%= audio_tag part_one.audio, controls: true %> |
-    <%= link_to "show", admin_part_one_path(part_one) %> |
-    <%= link_to "edit", edit_admin_part_one_path(part_one) %> |
-    <%= link_to "delete", admin_part_one_path(part_one), method: :delete,
-          data: { confirm: 'Are you sure?' } %> <br>
-  <% end %>
-</ul>
+<%= render "shared/page_title", title: "Photo Questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="audio-column">Audio</th>
+      <th class="photo-column">Photo</th>
+      <th class="level-column">Level</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Approved</th>
+      <th class="level-column" title="Deined reason only">Reason(?)</th>
+      <th class="action-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @part_ones.each_with_index do |part_one, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= audio_tag part_one.audio, controls: true %></td>
+        <td><%= image_tag(part_one.photo.thumb.url, size: "100x100") %></td>
+        <td><%= part_one.level_s %></td>
+        <td><%= part_one.point %></td>
+        <td><%= part_one.approved_status %></td>
+        <td><%= part_one.note %></td>
+        <td>
+          <%= link_to "show", admin_part_one_path(part_one) %> |
+          <%= link_to "edit", edit_admin_part_one_path(part_one) %> |
+          <%= link_to "delete", admin_part_one_path(part_one), method: :delete,
+                data: { confirm: 'Are you sure?' } %> <br>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

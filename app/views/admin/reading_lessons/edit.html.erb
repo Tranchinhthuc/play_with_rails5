@@ -1,0 +1,5 @@
+<%= simple_form_for(:examination,
+  url: Rails.application.routes.url_helpers.send("admin_#{controller_name.singularize}_path", @reading_lesson),
+  method: :patch) do |f| %>
+  <%= render "form", f: f %>
+<% end %>
