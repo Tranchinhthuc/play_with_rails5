@@ -32,6 +32,6 @@ class Admin::PartSixLessonsController < ApplicationController
 
   private
   def permit_params
-    params.require(:examination).permit(:examination_type, :question_ids => [])
+    params.require(:examination).permit(:point, :examination_type, :question_ids => [])
   end
 end

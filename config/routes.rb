@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :examinations, only: [:index] do
     resources :answer_sheets, only: [:new, :create]
+    post 'buy_examination', on: :member
   end
   resources :answer_sheets, only: [:index, :show]
 
