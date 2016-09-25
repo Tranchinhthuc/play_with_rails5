@@ -4,7 +4,9 @@
     <tr>
       <th>Tests</th>
       <th>Type</th>
+      <th>Points</th>
       <th>Views</th>
+      <th>Actions</th>
       <!-- <th>Rate</th> -->
       <!-- <th>Best score</th> -->
     </tr>
@@ -13,8 +15,17 @@
     <% @examinations.each do |examination| %>
         <tr>
           <td>Test <%= examination.id %></td>
-          <td><%= link_to examination.examination_type_s, new_examination_answer_sheet_path(examination) %></td>
+          <td><%= examination.examination_type_s %></td>
+          <td><%= examination.point %></td>
           <td><%= examination.answer_sheets.count %></td>
+          <td>
+            <% if current_user.bought_examination?(examination) %>
+              <%= link_to "Test Now!", new_examination_answer_sheet_path(examination), class: "btn btn-primary btn-flat" %>
+            <% else %>
+              <%= link_to "Buy now!", buy_examination_examination_path(examination, redirect: false), method: :post, class: "btn btn-primary btn-flat" %>
+              <%= link_to "Buy and test now!", buy_examination_examination_path(examination, redirect: true), method: :post, class: "btn btn-primary btn-flat" %>
+            <% end %>
+          </td>
         </tr>
     <% end %>
   </tbody>

@@ -3,6 +3,7 @@
   <%= f.collection_check_boxes(:question_ids, @questions, :id, :label_text, :item_wrapper_class => 'checkbox_container') %>
 </div>
 <%= f.hidden_field :examination_type, value: controller_name.singularize.to_sym %>
+<%= f.input :point %>
 <div class="actions">
   <%= f.submit %>
 </div>

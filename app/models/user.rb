@@ -10,6 +10,8 @@ class User < ApplicationRecord
   end
 
   has_many :answer_sheets, foreign_key: "examinee_id"
+  has_many :owned_examinations, through: :buyer_examinations, source: :examination
+  has_many :buyer_examinations, foreign_key: "buyer_id"
 
   scope :index, -> { all }
 
@@ -17,6 +19,16 @@ class User < ApplicationRecord
     admin: 1,
     normal: 2
   }
+
+  def bought_examination? examination
+    owned_examinations.include? examination
+  end
+
+  def buy_examination examination
+    unless bought_examination?(examination)
+      self.update_attributes(owned_examinations: owned_examinations << examination, point: point - examination.point)
+    end
+  end
 
   def admin?
     role == "admin"

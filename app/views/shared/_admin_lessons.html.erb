@@ -5,6 +5,7 @@
       <th>Lessons</th>
       <th>Views</th>
       <th>Total of questions</th>
+      <th>Point</th>
       <th>Action</th>
       <!-- <th>Rate</th> -->
       <!-- <th>Best score</th> -->
@@ -16,6 +17,7 @@
           <td>Lesson <%= examination.id %></td>
           <td><%= examination.answer_sheets.count %></td>
           <td><%= examination.questions.count %></td>
+          <td><%= examination.point %></td>
           <td>
             <%= link_to "show", Rails.application.routes.url_helpers.send("admin_#{controller_name.singularize}_path", examination) %> |
             <%= link_to "edit", Rails.application.routes.url_helpers.send("edit_admin_#{controller_name.singularize}_path", examination) %> |

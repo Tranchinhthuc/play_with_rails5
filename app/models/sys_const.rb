@@ -132,8 +132,16 @@ class SysConst
   }
 
   TEST_TIME_BY_TYPE = {
-    listening: 45*60,
-    reading: 75*60,
+    listening_lesson: 45*60,
+    reading_lesson: 75*60,
+    part_one_lesson: 10*60,
+    part_two_lesson: 10*60,
+    part_three_lesson: 15*60,
+    part_four_lesson: 15*60,
+    part_five_lesson: 10*60,
+    part_six_lesson: 15*60,
+    part_seven_one_lesson: 20*60,
+    part_seven_two_lesson: 25*60
   }
 
   LESSON_TYPES = [  :part_one_lessons, :part_two_lessons, :part_three_lessons,
