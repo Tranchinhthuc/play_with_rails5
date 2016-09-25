@@ -58,7 +58,7 @@ class User < ApplicationRecord
             password: Devise.friendly_token[0,20],
             facebook_token: auth.credentials.token,
             remote_avatar_url: auth.info.image.gsub('http:','https:')+"?fields=picture&type=large",
-            point: 3900
+            point: 0
           )
   end
 
