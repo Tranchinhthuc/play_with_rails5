@@ -1,8 +1,1 @@
-<% instance_variable_get(:"@#{controller_name}").each do |examination| %>
-  Examination: <%= examination.questions.count %>
-  <%= link_to "show", admin_part_one_lesson_path(examination) %> |
-  <%= link_to "edit", edit_admin_part_one_lesson_path(examination) %> |
-  <%= link_to "delete", admin_part_one_lesson_path(examination), method: :delete,
-        data: { confirm: 'Are you sure?' } %> <br>
-<% end %>
-<%= link_to "Add examination", new_admin_examination_path %> <br>
+<%= render "shared/admin_lessons", examinations: instance_variable_get(:"@#{controller_name}") %>

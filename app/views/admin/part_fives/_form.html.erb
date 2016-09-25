@@ -5,24 +5,42 @@
     <%= f.input :content, as: :summernote %>
   </div>
 
+  <b>Level</b><%= render "shared_form/level_field", f: f %>
+
   <div class="field">
     <%= f.fields_for :sub_questions do |sub_question_builder| %>
       <div class="sub_questions">
-        <%= sub_question_builder.fields_for :options do |option_builder| %>
-          <div class="options">
-            <%= option_builder.label :content, SysConst::OPTION_TO_STRING[option_builder.index] %>
-            <%= option_builder.text_field :content, class: "form-control option" %>
-            <%= option_builder.check_box :correct %>
-          </div>
-        <% end %>
+        <table class="table-striped table">
+          <thead>
+            <tr>
+              <th class="option-column">Option</th>
+              <th class="content-column">Content</th>
+              <th class="correct-column">Correct?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= sub_question_builder.fields_for :options do |option_builder| %>
+              <tr>
+                <td>
+                  <%= SysConst::OPTION_TO_STRING[option_builder.index] %>
+                </td>
+                <td>
+                  <%= option_builder.text_field :content, class: "form-control option" %>
+                </td>
+                <td>
+                  <%= option_builder.check_box :correct %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     <% end %>
   </div>
-  
-  <%= render "admin/shared_form/level_field", f: f %>
-  <%= render "admin/shared_form/explanation_field", f: f %>
+
+  <%= render "shared_form/explanation_field", f: f %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit, "Share question", class: "btn btn-lg btn-primary btn-flat" %>
   </div>
 <% end %>

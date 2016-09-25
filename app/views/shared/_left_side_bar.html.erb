@@ -35,13 +35,13 @@
       <ul class="sidebar-menu">
           <h4 title="Contribute question to get more point">
             Your points: <%= current_user.point %>!
-            <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC" %>
+            <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC; white-space: initial;" %>
           </h4>
           <p style="white-space: initial;">
             Bạn có thể chia sẻ câu hỏi cho chúng tôi để nhận thêm points.
           </p>
           <ul class="nav nav-pills nav-stacked">
-            <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
+            <% SysConst::USER_SIDE_RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
               <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
                 <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
                   Rails.application.routes.url_helpers.send("#{resource.to_s.singularize}_lessons_path") %>

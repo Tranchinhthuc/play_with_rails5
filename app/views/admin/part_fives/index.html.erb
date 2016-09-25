@@ -1,9 +1,25 @@
-<ul>
-  <% @part_fives.each do |part_five| %>
-    <%= part_five.content.html_safe %> |
-    <%= link_to "show", admin_part_five_path(part_five) %> |
-    <%= link_to "edit", edit_admin_part_five_path(part_five) %> |
-    <%= link_to "delete", admin_part_five_path(part_five), method: :delete,
-          data: { confirm: 'Are you sure?' } %> <br>
-  <% end %>
-</ul>
+<%= render "shared/page_title", title: "Your contributed questions" %>
+<table class="table-striped table">
+  <thead>
+    <tr>
+      <th class="order-column">No</th>
+      <th class="level-column">Level</th>
+      <th class="level-column">Point</th>
+      <th class="level-column">Approved</th>
+      <th class="level-column" title="Deined reason only">Reason(?)</th>
+      <th class="action-column">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @part_fives.each_with_index do |part_five, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= part_five.level_s %></td>
+        <td><%= part_five.point %></td>
+        <td><%= part_five.approved_status %></td>
+        <td><%= part_five.note %></td>
+        <td><%= link_to "show", part_five_path(part_five) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

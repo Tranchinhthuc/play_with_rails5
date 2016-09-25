@@ -1,7 +1,2 @@
-<%= @part_seven_one.content.html_safe %>
-<% @part_seven_one.sub_questions.each.with_index(1) do |sub_question, index| %>
-  Question<%= index %>: <%= sub_question.content %> </br>
-  <% sub_question.options.each do |option| %>
-    <%= option.content %> </br>
-  <% end %>
-<% end %>
+<%= render "shared/page_title", title: "Question details" %>
+<%= render "shared/question_details", question: @part_seven_one %>

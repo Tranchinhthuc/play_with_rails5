@@ -4,9 +4,9 @@
   <!-- Logo -->
   <a href="/" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>A</b>LT</span>
+    <span class="logo-mini"><b>T</b>RN</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Admin</b>LTE</span>
+    <span class="logo-lg"><b>Test-Right-Now</b></span>
   </a>
 
   <!-- Header Navbar -->
@@ -18,6 +18,12 @@
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
+        <li>
+          <%= link_to admin_users_path do %>
+            <i class="fa fa-history" aria-hidden="true"></i>
+            <span class="hidden-xs">Manage Users</span>
+          <% end %>
+        </li>
         <!-- Messages: style can be found in dropdown.less-->
         <li class="dropdown messages-menu">
           <!-- Menu toggle button -->
@@ -113,17 +119,25 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
-            <img src="/assets/user2-160x160.jpg" class="user-image" alt="User Image"/>
+            <% if current_user.avatar.url.present? %>
+              <%= image_tag(current_user.avatar.in_avatar.url, class: "user-image") %>
+            <% else %>
+              <%= image_tag("http://bountytechgaming.com/uploads/avatars/avatar_4202.jpg", class: "user-image") %>
+            <% end -%>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">Alexander Pierce</span>
+            <span class="hidden-xs"><%= current_user.full_name.present? ? current_user.full_name : current_user.email %></span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
-              <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <% if current_user.avatar.url.present? %>
+                <%= image_tag(current_user.avatar.in_avatar.url, class: "img-circle") %>
+              <% else %>
+                <%= image_tag("http://bountytechgaming.com/uploads/avatars/avatar_4202.jpg", class: "img-circle") %>
+              <% end -%>
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
+                <small>Member since <%= current_user.created_at %></small>
               </p>
             </li>
             <!-- Menu Body -->
@@ -141,7 +155,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-default btn-flat" %>
               </div>
               <div class="pull-right">
                 <%= link_to "Log out", destroy_user_session_path, method: "delete", class: "btn btn-default btn-flat" %></br>

@@ -13,7 +13,7 @@
     <% @examinations.each do |examination| %>
         <tr>
           <td>Test <%= examination.id %></td>
-          <td><%= link_to examination.examination_type, new_examination_answer_sheet_path(examination) %></td>
+          <td><%= link_to examination.examination_type_s, new_examination_answer_sheet_path(examination) %></td>
           <td><%= examination.answer_sheets.count %></td>
         </tr>
     <% end %>

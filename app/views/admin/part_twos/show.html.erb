@@ -1,3 +1,2 @@
-<%= audio_tag @part_two.audio, controls: true %>
-<br>
-Correct Option: <%= @part_two.correct_option_s %>
+<%= render "shared/page_title", title: "Question details" %>
+<%= render "shared/question_details", question: @part_two %>

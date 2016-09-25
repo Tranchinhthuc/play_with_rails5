@@ -17,7 +17,7 @@
           <tr>
             <td>Test <%= @examination.id %></td>
             <td><%= @examination.examination_type.upcase %></td>
-            <td><%= @answer_sheet.score %>/100</td>
+            <td><%= @answer_sheet.score %>/<%= @examination.questions.count %></td>
             <td><%= @answer_sheet.created_at.strftime('%r - %x') %></td>
             <td>
               <%= link_to "Test again", new_examination_answer_sheet_path(@answer_sheet.examination,

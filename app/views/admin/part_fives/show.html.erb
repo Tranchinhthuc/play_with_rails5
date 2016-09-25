@@ -1,4 +1,2 @@
-  Question: <%= @part_five.content.html_safe %> </br>
-  <% @part_five.sub_questions.first.options.each do |option| %>
-    <p class="<%= (option.correct ? 'correct-option' : '') %>"><%= option.content %></p>
-  <% end %>
+<%= render "shared/page_title", title: "Question details" %>
+<%= render "shared/question_details", question: @part_five %>
