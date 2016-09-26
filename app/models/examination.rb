@@ -32,6 +32,10 @@ class Examination < ApplicationRecord
   scope :listening_lessons, -> { includes(:answer_sheets).where examination_type: :listening_lesson }
   scope :half_test, -> { includes(:answer_sheets).where examination_type: [:listening_lesson, :reading_lesson]}
 
+  def point_s
+    point == 0 ? "Free" : point
+  end
+
   def examination_type_s
     SysConst::LESSON_TYPE_TO_STRING[examination_type.to_sym]
   end

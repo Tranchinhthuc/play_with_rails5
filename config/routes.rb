@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :readings
     resources :listenings
     resources :users
+    resources :questions, only: :update
   end
 
   SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|

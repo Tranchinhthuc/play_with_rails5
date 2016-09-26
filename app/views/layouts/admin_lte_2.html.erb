@@ -26,8 +26,8 @@
             <!-- <div class="add"> -->
               <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
                 <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>
-                <%= link_to "List questions",
-                  Rails.application.routes.url_helpers.send("admin_#{name}_path"),
+                <%= link_to "List Lessons",
+                  Rails.application.routes.url_helpers.send("admin_#{name.singularize}_lessons_path"),
                   class: "btn btn-flat btn-success" %>
               <% end %>
           </div>

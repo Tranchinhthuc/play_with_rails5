@@ -16,7 +16,7 @@
         <tr>
           <td>Test <%= examination.id %></td>
           <td><%= examination.examination_type_s %></td>
-          <td><%= examination.point %></td>
+          <td><%= examination.point_s %></td>
           <td><%= examination.answer_sheets.count %></td>
           <td>
             <% if current_user.bought_examination?(examination) %>
