@@ -17,7 +17,7 @@
           <tr>
             <td>Test <%= @examination.id %></td>
             <td><%= @examination.examination_type.upcase %></td>
-            <td><%= @answer_sheet.score %>/<%= @examination.questions.count %></td>
+            <td><%= @answer_sheet.score %>/<%= @examination.questions.map(&:sub_questions).flatten.count %></td>
             <td><%= @answer_sheet.created_at.strftime('%r - %x') %></td>
             <td>
               <%= link_to "Test again", new_examination_answer_sheet_path(@answer_sheet.examination,
@@ -34,38 +34,41 @@
     <h3><%= SysConst::QUESTION_TYPE_TO_STRING_2[question_type].upcase %></h3>
     <p><b>Directions: </b><%= SysConst::DIRECTIONS_BY_PART[question_type] %></p>
     <% questions.each do |question|  %>
-      <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
-      <div><%= audio_tag(question.audio, controls: true) if question_type.in? [:part_three, :part_four] %></div>
-      <div><%= question.content.html_safe if(question.content && question_type.in?(SysConst::READING_TYPES)) %></div>
-      <% question.sub_questions.each do |sub_question| %>
-        <%#= f.fields_for :answers do |builder| %>
-          <div class="question">
-            <b class="<%= sub_question.hasnt_answer_in?(@answer_sheet) ? 'no-answer' : '' %>"><%= "Question #{index}." %></b>
-            <% if question_type.in? SysConst::LISTENING_TYPES %>
-              <% if question_type == :part_one %>
-                <div class="row">
-                  <div class="col-md-6">
-                    <%= audio_tag(question.audio, controls: true) %>
+      <div class="question">
+        <b><%= "Question #{question_index(question, index)} <br>".html_safe if question_type.in?(SysConst::HAS_MANY_SUB_QUESTIONS) %></b>
+        <div><%= audio_tag(question.audio, controls: true) if question_type.in? [:part_three, :part_four] %></div>
+        <div><%= question.content.html_safe if(question.content && question_type.in?(SysConst::READING_TYPES)) %></div>
+        <% question.sub_questions.each do |sub_question| %>
+          <%#= f.fields_for :answers do |builder| %>
+            <div class="question">
+              <b class="<%= sub_question.hasnt_answer_in?(@answer_sheet) ? 'no-answer' : '' %>"><%= "Question #{index}." %></b>
+              <% if question_type.in? SysConst::LISTENING_TYPES %>
+                <% if question_type == :part_one %>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <%= audio_tag(question.audio, controls: true) %>
+                      <%= render "options", sub_question: sub_question %>
+                    </div>
+                    <div class="col-md-6">
+                      <%= image_tag(question.photo.in_examination) %>
+                    </div>
+                  </div>
+                <% else %>
+                  <div>
+                    <%= audio_tag(question.audio, controls: true) if question_type == :part_two %>
+                    <p><%= sub_question.content if question_type != :part_two %></p>
                     <%= render "options", sub_question: sub_question %>
                   </div>
-                  <div class="col-md-6">
-                    <%= image_tag(question.photo.in_examination.url) %>
-                  </div>
-                </div>
+                <% end %>
               <% else %>
-                <div>
-                  <%= audio_tag(question.audio, controls: true) if question_type == :part_two %>
-                  <%= render "options", sub_question: sub_question %>
-                </div>
+                <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
+                <%= render "options", sub_question: sub_question %>
               <% end %>
-            <% else %>
-              <p><%= sub_question.content if question_type.in? SysConst::READING_TYPES %></p>
-              <%= render "options", sub_question: sub_question %>
-            <% end %>
-          </div>
-          <% index += 1 %>
-        <%# end %>
-      <% end %>
+            </div>
+            <% index += 1 %>
+          <%# end %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
   <%#= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
