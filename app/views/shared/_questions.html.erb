@@ -23,7 +23,7 @@
           <td><%= audio_tag question.audio, controls: true %></td>
         <% end %>
         <% if controller_name == "part_ones" %>
-          <td><%= image_tag(question.photo.thumb.url, size: "100x100") %></td>
+          <td><%= image_tag(question.photo.thumb, size: "100x100") if question.photo %></td>
         <% end %>
         <td><%= question.level_s %></td>
         <td><%= question.point %></td>
@@ -39,7 +39,7 @@
           <%= link_to "edit", [:edit, :admin, question] %> |
           <%= link_to "delete", [:admin, question], method: :delete,
                 data: { confirm: 'Are you sure?' } %> <br>
-            
+
         </td>
       </tr>
     <% end %>

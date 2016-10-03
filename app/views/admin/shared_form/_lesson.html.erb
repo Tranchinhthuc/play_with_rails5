@@ -1,0 +1,12 @@
+<%= render "shared/error_messages", object: instance_variable_get(:"@#{controller_name.singularize}") %>
+<div>
+  <% @questions.each do |question| %>
+      <%= check_box_tag('question_ids[]', question.id, question.id.in?(instance_variable_get(:"@#{controller_name.singularize}").question_ids)) %>
+      Question <%= question.id %> <br>
+  <% end %>
+</div>
+<%= f.hidden_field :examination_type, value: controller_name.singularize.to_sym %>
+<%= f.input :point, :input_html => { :type => "number" } %>
+<div class="actions">
+  <%= f.submit %>
+</div>
