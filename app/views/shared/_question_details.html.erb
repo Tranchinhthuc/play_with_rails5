@@ -4,7 +4,7 @@
     <%if question.class.name.underscore.to_sym.in? SysConst::LISTENING_TYPES %>
       <p><%= audio_tag(question.audio, controls: true) %></p>
     <% else %>
-      <p><%= question.content.html_safe %></p>
+      <p><%= question.content.try(:html_safe) %></p>
     <% end %>
   </div>
   <% question.sub_questions.each_with_index do |sub_question, index| %>

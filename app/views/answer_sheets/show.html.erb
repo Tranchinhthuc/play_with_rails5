@@ -68,9 +68,35 @@
             <% index += 1 %>
           <%# end %>
         <% end %>
+        <div style="display: none;">
+          <%= question.explanation ? question.explanation.html_safe : "Nothing" %>
+        </div>
+        <a href="#" class='show-hide'>
+          <span>
+            <i class='fa fa-plus-square-o text-success' aria-hidden='true'></i> Show explanation
+          </span>
+        </a>
       </div>
     <% end %>
   <% end %>
   <%#= f.hidden_field :answer_sheet_type, value: params[:answer_sheet_type] %>
   <%#= f.submit "Submit", id: "submit_answer_sheet", class: "btn btn-default btn-primary" %>
 <!-- </div> -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var visible_flag = false;
+    $(".show-hide").click(function(e){
+      visible_flag = !visible_flag;
+      if (visible_flag){
+        $(this).prev().show();
+        $(this).find('span').html("<i class='fa fa-minus-square-o text-success' aria-hidden='true'></i> Hide explanation");
+      } else {
+        $(this).prev().hide();
+        $(this).find('span').html("<i class='fa fa-plus-square-o text-success' aria-hidden='true'></i> Show explanation");
+      }
+      e.preventDefault();
+    });
+  });
+</script>
+
