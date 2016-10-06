@@ -17,7 +17,7 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= audio_tag part_one.audio, controls: true %></td>
-        <td><%= image_tag(part_one.photo.thumb.url, size: "100x100") %></td>
+        <td><%= image_tag(part_one.photo.thumb, size: "100x100") %></td>
         <td><%= part_one.level_s %></td>
         <td><%= part_one.point %></td>
         <td><%= part_one.approved_status %></td>

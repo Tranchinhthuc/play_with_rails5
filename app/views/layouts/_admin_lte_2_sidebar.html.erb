@@ -34,7 +34,13 @@
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
         <!-- <ul class="nav nav-pills nav-stacked"> -->
-          <% SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
+          <% SysConst::USER_SIDE_RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
+            <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
+              <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
+                Rails.application.routes.url_helpers.send("admin_#{resource.to_s}_path") %>
+            </li>
+          <% end %>
+          <% [:reading, :listening].each do |resource| %>
             <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
               <%= link_to SysConst::QUESTION_TYPE_TO_STRING_3[resource.to_s.singularize.to_sym],
                 Rails.application.routes.url_helpers.send("admin_#{resource.to_s.singularize}_lessons_path") %>

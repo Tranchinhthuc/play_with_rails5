@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <%= image_tag(@part_one.photo.in_examination.url) %>
+    <%= image_tag(@part_one.photo.in_examination) %>
   </div>
   <b>Explanation:</b>
   <p><%= @part_one.explanation.html_safe %></p>

@@ -87,6 +87,19 @@ body {
   width: 100%;
 }
 
+
+.admin-page-tabs {
+  background-color: #3C8DBC;
+  color: white;
+  background: linear-gradient(#3C8DBC, #3C8DBC);
+  width: 90%;
+}
+
+.admin-page-tabs > .nav-pills > li > a {
+  background-color: #3C8DBC;
+  color: white;
+}
+
 .footer {
   height: 200px;
   margin:20px;

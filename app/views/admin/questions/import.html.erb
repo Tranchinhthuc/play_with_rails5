@@ -1,0 +1,14 @@
+<%= form_for :question do |f| %>
+  <dir>
+    Question type:
+    <%= f.select(:type, SysConst::QUESTION_TYPES.collect {|question_type| [SysConst::QUESTION_TYPE_TO_STRING_3[question_type], question_type]}, :prompt => 'Select') %>
+  </dir>
+
+  <dir>
+    Files(excel + image + audio):<%= f.file_field :files, multiple: true %>
+  </dir>
+
+  <dir class="actions">
+    <%= f.submit "Submit", class: "btn btn-lg btn-primary btn-flat" %>
+  </dir>
+<% end %>

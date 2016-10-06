@@ -68,6 +68,8 @@ class SysConst
     part_seven_two: "Part 7(Double passage)"
   }
 
+  QUESTION_TYPES = [:part_one, :part_two, :part_three, :part_four, :part_five, :part_six, :part_seven_one, :part_seven_two]
+
   QUESTION_TYPE_TO_STRING_3 = {
     part_one: "Part 1 - Photo",
     part_two: "Part 2 - Question-Response",

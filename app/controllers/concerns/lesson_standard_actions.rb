@@ -22,6 +22,7 @@ module LessonStandardActions
 
   def lesson_standard_create
     klass, object_name, objects_name = preparation
+    params[:examination][:question_ids] = params[:question_ids] if params[:examination][:question_ids].nil?
     instance_variable_set(:"@#{object_name}", obj = current_user.examinations.build(permit_params))
     @questions = object_name.gsub('_lesson', "").classify.constantize.all
     if instance_variable_get(:"@#{object_name}").save

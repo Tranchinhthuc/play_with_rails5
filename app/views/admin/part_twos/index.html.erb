@@ -1,27 +1,2 @@
 <%= render "shared/page_title", title: "Your contributed questions" %>
-<table class="table-striped table">
-  <thead>
-    <tr>
-      <th class="order-column">No</th>
-      <th class="audio-column">Audio</th>
-      <th class="level-column">Level</th>
-      <th class="level-column">Point</th>
-      <th class="level-column">Approved</th>
-      <th class="level-column" title="Deined reason only">Reason(?)</th>
-      <th class="action-column">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @part_twos.each_with_index do |part_two, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= audio_tag part_two.audio, controls: true %></td>
-        <td><%= part_two.level_s %></td>
-        <td><%= part_two.point %></td>
-        <td><%= part_two.approved_status %></td>
-        <td><%= part_two.note %></td>
-        <td><%= link_to "show", part_two_path(part_two) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "shared/questions", questions: @part_twos %>

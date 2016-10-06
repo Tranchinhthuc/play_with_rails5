@@ -18,7 +18,7 @@ class Admin::ReadingLessonsController < ApplicationController
   def create
     @reading_lesson = current_user.examinations.build(permit_params)
     @reading_lesson.question_ids = params[:question_ids]
-    if reading_lesson.save
+    if @reading_lesson.save
       redirect_to action: :index
     else
       fetch_questions
