@@ -15,5 +15,17 @@
  *= require font-awesome
  *= require AdminLTE/AdminLTE
  *= require AdminLTE/skins/skin-blue
+ *= require social-share-button
  *= require_self
  */
+
+
+ $size: 24px;
+
+ .social-share-button {
+   .ssb-icon {
+     background-size: $size $size;
+     height: $size;
+     width: $size;
+   }
+ }

@@ -24,7 +24,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # AuditLog.create(audit_log_type: 'login_with_facebook', datetime: Time.now,
         #   remote_ip: request.remote_ip, ip: request.ip, authenticated: true,
         #   email: user.email, password: "********")
-        redirect_to edit_user_registration_path
+        # redirect_to edit_user_registration_path
+        redirect_to root_path
         set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
         # if user.ordinary_user?
