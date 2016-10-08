@@ -15,7 +15,8 @@
           <!-- <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
         </div>
         <div class="pull-left info" style="color: black">
-          <p>Hello! <%= current_user.full_name.present? ? current_user.full_name : current_user.email %></p>
+          <p><%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
+          <br><%= current_user.point %> points</p>
         </div>
       </div>
 
@@ -33,12 +34,14 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-          <h4 title="Contribute question to get more point">
-            Your points: <%= current_user.point %>!
-            <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC; white-space: initial;" %>
-          </h4>
           <p style="white-space: initial;">
-            Bạn có thể chia sẻ câu hỏi cho chúng tôi để nhận thêm points.
+            <%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC; white-space: initial;" %><br>
+            Like page để nhận 500 points.<br>Share page để nhận 2000 points.<br>
+            Chia sẻ câu hỏi để nhận thêm points.
+            <!-- https://www.facebook.com/testrightnow -->
+            <div class="fb-like" data-href="https://www.facebook.com/testrightnow/" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+            <br>
+            <div style="margin-top: 6px;"><%= social_share_button_tag("title", :url => "https://www.facebook.com/testrightnow") %></div>
           </p>
           <ul class="nav nav-pills nav-stacked">
             <% SysConst::USER_SIDE_RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
@@ -64,3 +67,11 @@
   <% end %>
   <!-- /.sidebar -->
 </aside>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".ssb-facebook").click(function() {
+      $.post( "users/share_page", function( data ) {
+      });
+    });
+  });
+</script>

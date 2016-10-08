@@ -16,6 +16,7 @@
 //= require summernote
 //= require cocoon
 //= require app
+//= require social-share-button
 //= require_tree .
 
 

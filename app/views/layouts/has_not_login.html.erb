@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test-Right-Now</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="jumbotron">
+            <h2>
+              Học nào các đồng chí!
+            </h2>
+            <p>
+              <h3>Hệ thống cung cấp gần như free các dịch vụ sau:</h3>
+              <ul>
+                <li>
+                  <h4>Các đề thi, bài ôn tập theo chủ đề thuộc nhiều lĩnh vực:</h4>
+                  <ul>
+                    <li>Toeic</li>
+                    <li>Luyện thi đại học:
+                      <ul>
+                        <li>Vật Lý</li>
+                        <li>Hóa Học</li>
+                        <li>...</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>Bạn nhận được kết quả cùng với đáp án chi tiết ngay sau khi làm bài.</li>
+                <li>....</li>
+
+              </ul>
+            </p>
+            <p><b>Đăng nhập bằng facebook để bắt đầu học tập nhé. :D</b></p>
+            <p align="center">
+              <%= link_to "Đăng nhập bằng facebook", omniauth_authorize_path(:user, "facebook"),
+              class: "btn btn-primary btn-flat btn-large" %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

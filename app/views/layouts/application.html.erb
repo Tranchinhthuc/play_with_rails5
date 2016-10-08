@@ -13,19 +13,55 @@
 
   <body class="skin-blue sidebar-mini fixed <%= params[:controller].parameterize %> <%= action_name %>" style="font-size: 15px">
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7&appId=1584038561884421";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var page_like_callback = function(url, html_element) {
+          console.log("page_like_callback");
+          $.post( "/users/like_page", function( data ) {
+            location.reload();
+          });
+        }
+        var page_unlike_callback = function(url, html_element) {
+          console.log("page_unlike_callback");
+          $.post( "users/unlike_page", function( data ) {
+            location.reload();
+          });
+        }
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+          FB.init({
+            appId: '1584038561884421',
+            version: 'v2.7' // or v2.1, v2.2, v2.3, ...
+          });
+          $('#loginbutton,#feedbutton').removeAttr('disabled');
+          FB.Event.subscribe('edge.create', page_like_callback);
+          FB.Event.subscribe('edge.remove', page_unlike_callback);
+        });
+      });
+    </script>
+    <script>
+      // window.fbAsyncInit = function() {
+      //   FB.init({
+      //     appId      : '1584038561884421',
+      //     xfbml      : true,
+      //     version    : 'v2.8'
+      //   });
+      //   FB.Event.subscribe('edge.create', page_like_or_unlike_callback);
+      // };
+      // (function(d, s, id) {
+      //   var js, fjs = d.getElementsByTagName(s)[0];
+      //   if (d.getElementById(id)) return;
+      //   js = d.createElement(s); js.id = id;
+      //   js.src = "//connect.facebook.net/en_GB/sdk.js";
+      //   fjs.parentNode.insertBefore(js, fjs);
+      // }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <div class="wrapper">
-      <dir>
+      <div>
         <%= render "shared/header" %>
         <%= render 'shared/left_side_bar' %>
-      </dir>
+      </div>
       <div class="content-wrapper">
         <div class="container">
           <% if user_signed_in? %>
@@ -84,4 +120,24 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      var page_like_or_unlike_callback = function(url, html_element) {
+        console.log("page_like_or_unlike_callback");
+        console.log(url);
+        console.log(html_element);
+      }
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1584038561884421',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        // FB.AppEvents.logPageView();
+        FB.Event.subscribe('edge.create', page_like_or_unlike_callback);
+      };
+
+      // In your onload handler
+    });
+  </script>
 </html>

@@ -40,6 +40,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    post "like_page", on: :collection
+    post "unlike_page", on: :collection
+    post "share_page", on: :collection
+
+  end
+
   SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|
     resources question_type, except: [:edit, :update, :destroy]
   end
