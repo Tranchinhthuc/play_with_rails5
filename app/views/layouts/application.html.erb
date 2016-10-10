@@ -39,23 +39,6 @@
         });
       });
     </script>
-    <script>
-      // window.fbAsyncInit = function() {
-      //   FB.init({
-      //     appId      : '1584038561884421',
-      //     xfbml      : true,
-      //     version    : 'v2.8'
-      //   });
-      //   FB.Event.subscribe('edge.create', page_like_or_unlike_callback);
-      // };
-      // (function(d, s, id) {
-      //   var js, fjs = d.getElementsByTagName(s)[0];
-      //   if (d.getElementById(id)) return;
-      //   js = d.createElement(s); js.id = id;
-      //   js.src = "//connect.facebook.net/en_GB/sdk.js";
-      //   fjs.parentNode.insertBefore(js, fjs);
-      // }(document, 'script', 'facebook-jssdk'));
-    </script>
 
     <div class="wrapper">
       <div>
@@ -67,6 +50,26 @@
           <% if user_signed_in? %>
             <div class="row">
               <div class="col-md-10">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Share website to fb(2000 points)</th>
+                        <th>Like fan page(500 points)</th>
+                        <th>Chia sẻ câu hỏi(200-1000 points)</th>
+                        <th>Nạp point</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= social_share_button_tag("title", :url => "https://test-right-now.com") %></td>
+                        <td>
+                          <div class="fb-like" data-href="https://www.facebook.com/testrightnow/" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false" style="width: 150px"></div>
+                        </td>
+                        <td>Chọn loại câu hỏi</td>
+                        <td><%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC; white-space: initial;" %></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 <!-- <div class="add"> -->
                   <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
                     <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>

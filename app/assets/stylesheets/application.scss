@@ -20,9 +20,10 @@
  */
 
 
- $size: 24px;
+ $size: 15;
 
  .social-share-button {
+  display: inline;
    .ssb-icon {
      background-size: $size $size;
      height: $size;
