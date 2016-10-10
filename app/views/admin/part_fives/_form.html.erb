@@ -2,7 +2,7 @@
   <%= render "shared/error_messages", object: @part_five %>
 
   <div class="field">
-    <%= f.input :content, as: :summernote %>
+    <%#= f.input :content, as: :summernote %>
   </div>
 
   <b>Level</b><%= render "shared_form/level_field", f: f %>
@@ -10,6 +10,8 @@
   <div class="field">
     <%= f.fields_for :sub_questions do |sub_question_builder| %>
       <div class="sub_questions">
+        <%= sub_question_builder.label :content, "Question" %>.<br />
+        <%= sub_question_builder.text_field :content, :rows => 3, class: "form-control" %><br />
         <table class="table-striped table">
           <thead>
             <tr>

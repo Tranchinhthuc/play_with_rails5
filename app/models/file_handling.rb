@@ -30,8 +30,8 @@ class FileHandling
       4.times do |j|
         content += spreadsheet.row(question + j)[1] if spreadsheet.row(question + j)[1]
         options << spreadsheet.row(question + j)[2]
-        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[1]
-        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[1]
+        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[3]
+        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[4]
       end
       part_one = PartOne.new(content: content, explanation: explanation,
         audio: audio_files.find{|audio| File.basename(audio.original_filename, File.extname(audio.original_filename)) == (index + 1).to_s},
@@ -60,8 +60,8 @@ class FileHandling
       3.times do |j|
         content += spreadsheet.row(question + j)[1] if spreadsheet.row(question + j)[1]
         options << spreadsheet.row(question + j)[2]
-        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[1]
-        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[1]
+        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[3]
+        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[4]
       end
       part_two = PartTwo.new(content: content, explanation: explanation,
         audio: audio_files.find{|audio| File.basename(audio.original_filename, File.extname(audio.original_filename)) == (index + 1).to_s})
@@ -171,8 +171,8 @@ class FileHandling
       4.times do |j|
         content += spreadsheet.row(question + j)[1] if spreadsheet.row(question + j)[1]
         options << spreadsheet.row(question + j)[2]
-        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[1]
-        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[1]
+        correct_option += spreadsheet.row(question + j)[3] if spreadsheet.row(question + j)[3]
+        explanation += spreadsheet.row(question + j)[4] if spreadsheet.row(question + j)[4]
       end
       part_five = PartFive.new(explanation: explanation)
       part_five.save(validate: false)
