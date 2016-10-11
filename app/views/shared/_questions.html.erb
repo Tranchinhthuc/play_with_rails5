@@ -8,6 +8,7 @@
       <% if controller_name == "part_ones" %>
         <th>Photo</th>
       <% end %>
+      <th>Content</th>
       <th>Level</th>
       <th>Point</th>
       <th>Approved status</th>
@@ -25,6 +26,9 @@
         <% if controller_name == "part_ones" %>
           <td><%= image_tag(question.photo.thumb, size: "100x100") if question.photo %></td>
         <% end %>
+        <td>
+          <%= question.content_s.first(100).html_safe if question.content_s %>
+        </td>
         <td><%= question.level_s %></td>
         <td><%= question.point %></td>
         <td><%= question.approved_status %></td>

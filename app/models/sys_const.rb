@@ -118,7 +118,7 @@ class SysConst
     :part_fives, :part_sixes, :part_seven_ones, :part_seven_twos
   ]
 
-  LISTENING_TYPES = [:part_one, :part_two, :part_three, :part_four]
+  LISTENING_TYPES = [:part_one, :part_two, :part_three, :part_four, :part_one_lesson, :part_two_lesson, :part_three_lesson, :part_four_lesson]
   READING_TYPES = [:part_five, :part_six, :part_seven_one, :part_seven_two]
   HAS_MANY_SUB_QUESTIONS = [:part_three, :part_four, :part_six, :part_seven_one, :part_seven_two]
 

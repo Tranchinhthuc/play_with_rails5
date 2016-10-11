@@ -12,6 +12,14 @@ class Question < ApplicationRecord
     approved: 3
   }
 
+  def content_s
+    if content?
+      content
+    else
+      sub_questions.first.content
+    end
+  end
+
   def correct_option_s
     # SysConst::PART_1_2_OPTIONS.key(correct_option)
   end
