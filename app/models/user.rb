@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :answer_sheets, foreign_key: "examinee_id"
   has_many :owned_examinations, through: :buyer_examinations, source: :examination
   has_many :buyer_examinations, foreign_key: "buyer_id"
+  has_many :words
 
   scope :index, -> { all }
 

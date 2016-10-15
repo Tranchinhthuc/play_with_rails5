@@ -1,0 +1,90 @@
+<form action='/someServerSideHandler'>
+    <table data-bind='visible: words().length > 0'>
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Meaning</th>
+                <th />
+            </tr>
+        </thead>
+        <tbody data-bind='foreach: words'>
+            <tr>
+                <td>
+                  <div class="input-group">
+                    <input type="text" class="form-control required" aria-describedby="basic-addon1" data-bind='value: origin, uniqueName: true, disable: wordShouldDisable'>
+                    <span class="input-group-addon" id="basic-addon1">
+                      <a href="#" data-bind='click: wordEditable'>
+                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                      </a>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <input type="text" class="form-control required" aria-describedby="basic-addon1" data-bind='value: meaning, uniqueName: true, disable: meaningShouldDisable'>
+                    <span class="input-group-addon" id="basic-addon1">
+                      <a href="#" data-bind='click: meaningEditable'>
+                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                      </a>
+                    </span>
+                  </div>
+                </td>
+                <td><a href='#' data-bind='click: $root.removeWord, visible: deleteShouldVisible'>Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+ 
+    <button data-bind='click: addWord'>Add word</button>
+    <button data-bind='enable: words().length > 0' type='submit'>Submit</button>
+</form>
+
+<script type="text/javascript">
+
+
+  var word = function(origin, meaning, deleteShouldVisible) {
+      var self = this;
+      self.origin = ko.observable(origin);
+      self.meaning = ko.observable(meaning);
+
+      self.meaningShouldDisable = ko.observable(meaning.length > 0);
+      self.wordShouldDisable = ko.observable(origin.length > 0);
+      self.meaningEditable = function() {
+        self.meaningShouldDisable(!(self.meaningShouldDisable()));
+      };
+
+      self.wordEditable = function() {
+        self.wordShouldDisable(!(self.wordShouldDisable()));
+      };
+
+      self.deleteShouldVisible = ko.observable(deleteShouldVisible);
+  };
+
+  var words = function(words) {
+      var self = this;
+      self.words = ko.observableArray(words);
+   
+      self.addWord = function() {
+          // self.words.push(new word("", "", false));
+      };
+   
+      self.removeWord = function(word) {
+          self.words.remove(word);
+      };
+
+      self.save = function(form) {
+          alert("Could now transmit to server: " + ko.utils.stringifyJson(self.words));
+      };
+  };
+
+  // console.log(data_words.length);
+  $.getJSON("/words", function(data) {
+    var data_words = [];
+    for (i = 0; i < data.length; i++) {
+      data_words.push(new word(data[i].origin, data[i].meaning, true));
+    }
+    console.log(data_words.length);
+    data_words.push(new word("", "", false));
+
+    ko.applyBindings(new words(data_words));
+  })
+</script>

@@ -5,10 +5,18 @@
     <title>Test-Right-Now</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Abhaya Libre">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        font-family: 'Abhaya Libre', serif;
+        font-size: 48px;
+      }
+    </style>
   </head>
 
   <body class="skin-blue sidebar-mini fixed <%= params[:controller].parameterize %> <%= action_name %>" style="font-size: 15px">
@@ -71,20 +79,7 @@
                     </tbody>
                   </table>
                 <!-- <div class="add"> -->
-                  <% if controller_name.in?(SysConst::TABLE_NAME + SysConst::LESSON_TYPES.map(&:to_s)) && !action_name.in?(["new", "create"]) %>
-                    <% name = controller_name.include?("lesson") ? controller_name.singularize.gsub("_lesson", "").pluralize : controller_name %>
-                    <div class="page-tabs">
-                      <ul class="nav nav-pills">
-                          <li class="<%= (controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
-                            <%= link_to "Lessons", Rails.application.routes.url_helpers.send("#{name.singularize}_lessons_path") %>
-                          </li>
-                          <li class="<%= (!controller_name.include?('lessons') && action_name == 'index') ? 'active' : '' %>">
-                            <%= link_to "Câu hỏi đã chia sẻ", Rails.application.routes.url_helpers.send("#{name}_path") %>
-                          </li>
-                      </ul>
-                    </div>
-                    <%= link_to "Chia sẻ câu hỏi của bạn", [:new, singulize_model_name(name).to_sym], class: "btn btn-primary pull-right contribute-button" %>
-                  <% end %>
+                  <%#= render "layouts/share_question_button" %>
                 <!-- </div> -->
                 <% flash.each do |message_type, message| %>
                   <div class="alert alert-<%= message_type %> col-md-10-offset-2"><%= message %></div>
