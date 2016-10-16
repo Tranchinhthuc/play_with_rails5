@@ -39,12 +39,16 @@ Rails.application.routes.draw do
     end
     resources :readings
     resources :listenings
-    resources :users
+    resources :users do
+      patch 'update_point', on: :member
+    end
     resources :questions, only: :update do
-      post 'import' , on: :collection
-      get 'import' , on: :collection
+      post 'import', on: :collection
+      get 'import', on: :collection
     end
   end
+
+  resources :cards, only: [:index]
 
   resources :users do
     post "like_page", on: :collection

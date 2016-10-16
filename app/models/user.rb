@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :owned_examinations, through: :buyer_examinations, source: :examination
   has_many :buyer_examinations, foreign_key: "buyer_id"
   has_many :words
+  has_many :cards
 
   scope :index, -> { all }
 

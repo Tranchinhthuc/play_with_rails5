@@ -31,9 +31,21 @@ class PointRechargingController < ApplicationController
     if result[:error_code] == "00"
       flash[:notice] = "Giao dịch thành công"
       current_user.update_attributes(point: current_user.point + result[:card_amount].to_i)
+      current_user.cards.create(pin: params[:point_recharging][:pin_card],
+        serial: params[:point_recharging][:card_serial],
+        money: result[:card_amount].to_i,
+        card_type: params[:point_recharging][:type_card],
+        status: "OK"
+      )
       redirect_to root_path
     else
       flash[:danger] = RespondDataHanding.new.error_raising(result[:error_code])
+      current_user.cards.create(pin: params[:point_recharging][:pin_card],
+        serial: params[:point_recharging][:card_serial],
+        money: 0,
+        card_type: params[:point_recharging][:type_card],
+        status: RespondDataHanding.new.error_raising(result[:error_code])
+      )
       render "new"
     end
   end
