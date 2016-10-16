@@ -97,6 +97,8 @@ GEM
       turbolinks
     json (2.0.2)
     jwt (1.5.4)
+    knockoutjs-rails (3.4.0.1)
+      railties (>= 3.1, < 6)
     koala (2.4.0)
       addressable
       faraday
@@ -244,6 +246,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  knockoutjs-rails
   koala (~> 2.2)
   listen (~> 3.0.5)
   mini_magick

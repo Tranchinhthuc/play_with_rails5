@@ -64,3 +64,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'adminlte2-rails'
 gem 'roo'
 gem 'social-share-button'
+gem 'knockoutjs-rails'

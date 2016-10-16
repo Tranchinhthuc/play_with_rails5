@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   end
   resources :answer_sheets, only: [:index, :show]
 
+  resources :words do
+    put 'update_origin', on: :member
+    put 'update_status', on: :member
+    put 'update_meaning', on: :member
+  end
+
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: "users/sessions"}
 
   devise_scope :user do
@@ -44,7 +50,7 @@ Rails.application.routes.draw do
     post "like_page", on: :collection
     post "unlike_page", on: :collection
     post "share_page", on: :collection
-
+    get "words", on: :member
   end
 
   SysConst::RESOURCES_TOEIC_QUESTION_TYPES.each do |question_type|

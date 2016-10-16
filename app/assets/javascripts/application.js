@@ -17,6 +17,7 @@
 //= require cocoon
 //= require app
 //= require social-share-button
+//= require knockout
 //= require_tree .
 
 
