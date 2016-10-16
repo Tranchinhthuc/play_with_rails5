@@ -66,7 +66,7 @@
       self.id = id;
       self.origin = ko.observable(origin);
       self.meaning = ko.observable(meaning);
-      self.editIcon = ko.observable('<i class="glyphicon glyphicon-edit" aria-hidden="true"></i>');
+      self.editIcon = ko.observable('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>');
       self.status = ko.observable(status);
       self.shouldVisible = ko.observable(status == "not_remember_yet");
       self.showShouldVisible = ko.observable(!self.shouldVisible());
