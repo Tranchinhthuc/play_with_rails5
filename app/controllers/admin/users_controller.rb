@@ -29,6 +29,12 @@ class Admin::UsersController < Admin::Base
     standard_destroy
   end
 
+  def update_point
+    @user = User.find params[:id]
+    @user.update point: params[:point]
+    redirect_to :back
+  end
+
   private
   def permit_params
     params.require(:user).permit(:full_name, :password, :avatar, :email)
