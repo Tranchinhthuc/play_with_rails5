@@ -1,1 +1,11 @@
-show.html.erb
+<div class="col-md-12">
+  <p>Name: <%= @user.full_name %></p>
+  <p>Email: <%= @user.email %></p>
+  <p>Provider: <%= @user.provider %></p>
+  <p>Point: <%= @user.point %></p>
+  <%= form_for(@user, url: update_point_admin_user_path, method: :patch) do |f| %>
+    <%= label_tag(:point, "Point") %>
+    <%= text_field_tag(:point) %>
+    <%= submit_tag("Add point") %>
+  <% end %>
+</div>
