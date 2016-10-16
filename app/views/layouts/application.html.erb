@@ -19,7 +19,7 @@
     </style>
   </head>
 
-  <body class="skin-blue sidebar-mini fixed <%= params[:controller].parameterize %> <%= action_name %>" style="font-size: 15px">
+  <body class="skin-blue sidebar-mini fixed <%= params[:controller].parameterize %> <%= action_name %>" style="font-size: 17px">
     <div id="fb-root"></div>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -63,7 +63,7 @@
                       <tr>
                         <th>Share website to fb(2000 points)</th>
                         <th>Like fan page(500 points)</th>
-                        <th>Chia sẻ câu hỏi(200-1000 points)</th>
+                        <!-- <th>Chia sẻ câu hỏi(200-1000 points)</th> -->
                         <th>Nạp point</th>
                       </tr>
                     </thead>
@@ -73,7 +73,7 @@
                         <td>
                           <div class="fb-like" data-href="https://www.facebook.com/testrightnow/" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="false" style="width: 150px"></div>
                         </td>
-                        <td>Chọn loại câu hỏi</td>
+                        <!-- <td>Chọn loại câu hỏi</td> -->
                         <td><%= link_to "Nạp point!", new_point_recharging_path, style: "text-decoration: underline; color: #3C8DBC; white-space: initial;" %></td>
                       </tr>
                     </tbody>
