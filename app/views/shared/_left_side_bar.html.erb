@@ -41,6 +41,9 @@
                   Rails.application.routes.url_helpers.send("#{resource.to_s.singularize}_lessons_path") %>
               </li>
             <% end %>
+            <li>
+              <%= link_to "Kho từ vựng của bạn", words_user_path(current_user) %>
+            </li>
           <!-- </ul><br> -->
         <!-- <li class="header">HEADER</li> -->
           <!-- Optionally, you can add icons to the links -->
