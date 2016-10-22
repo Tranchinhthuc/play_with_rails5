@@ -15,7 +15,7 @@
         <tr>
           <td>Lesson <%= examination.id %></td>
           <td><%= examination.point_s %></td>
-          <td><%= examination.answer_sheets.count %></td>
+          <td><%= examination.views %></td>
           <td>
             <% if current_user.bought_examination?(examination) %>
               <%= link_to "Test Now!", new_examination_answer_sheet_path(examination), class: "btn btn-primary btn-flat" %>
