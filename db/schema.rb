@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016093957) do
+ActiveRecord::Schema.define(version: 20161022114734) do
 
   create_table "answer_sheets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "examination_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161016093957) do
     t.datetime "updated_at",                   null: false
     t.integer  "examination_type"
     t.integer  "point",            default: 0
+    t.integer  "views"
   end
 
   create_table "listening_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

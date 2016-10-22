@@ -39,4 +39,8 @@ class Examination < ApplicationRecord
   def examination_type_s
     SysConst::LESSON_TYPE_TO_STRING[examination_type.to_sym]
   end
+
+  def total_of_question
+    self.questions.map(&:sub_questions).flatten.count
+  end
 end
