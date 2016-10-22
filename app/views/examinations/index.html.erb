@@ -4,6 +4,7 @@
     <tr>
       <th>Tests</th>
       <th>Type</th>
+      <th>Questions</th>
       <th>Points</th>
       <th>Views</th>
       <th>Actions</th>
@@ -16,6 +17,7 @@
         <tr>
           <td>Test <%= examination.id %></td>
           <td><%= examination.examination_type_s %></td>
+          <td><%= examination.total_of_question %></td>
           <td><%= examination.point_s %></td>
           <td><%= examination.answer_sheets.count %></td>
           <td>

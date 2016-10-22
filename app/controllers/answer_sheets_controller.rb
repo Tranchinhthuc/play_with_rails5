@@ -26,6 +26,7 @@ class AnswerSheetsController < ApplicationController
     @answer_sheet = @examination.answer_sheets.build permit_params
     @answer_sheet.examinee = current_user
     if @answer_sheet.save
+      @examination.update(views: (@examination.views + 1))
       redirect_to answer_sheet_path(@answer_sheet)
     else
       @questions = (answer_sheet.answer_sheet_type == "listening") ? @examination.listening.questions : @examination.reading.questions
