@@ -1,43 +1,61 @@
-<!-- <div id="summernote">Hello Summernote</div>
+<!DOCTYPE html>
+  <html lang="en">
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#summernote').summernote();
-  });
-</script> -->
-<div class="container">
-  <% unless user_signed_in? %>
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Sign up</h2>
+  <head>
 
-        <%= simple_form_for(User.new, as: :user, url: registration_path(:user)) do |f| %>
-          <%= f.error_notification %>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
 
-          <div class="form-inputs">
-            <%= f.input :full_name, required: true, autofocus: true %>
-            <%= f.input :email, required: true, autofocus: true %>
-            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-            <%= f.input :password_confirmation, required: true %>
+      <title>Stylish Portfolio - Start Bootstrap Theme</title>
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+      <%= csrf_meta_tags %>
+
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+      <% if user_signed_in? %>
+        <header class="header">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                  <h2 class="page-header"></h2>
+              </div>
+              <% 6.times do |i| %>
+                <% if i==0 %>
+                  <a href="" class="active-link">
+                    <div class="col-lg-4 col-sm-6 text-center subject">
+                      thuc
+                    </div>
+                  </a>
+                <% else %>
+                  <a href="" class="inactive-link">
+                    <div class="col-lg-4 col-sm-6 text-center subject">
+                      thuc
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+            </div>
           </div>
+        </header>
+      <% else %>
+        <header id="top" class="header">
+            <div class="text-vertical-center">
+                <h1>Test-right-now.com</h1>
+                <h3>Let 's study Toeic, Ielts, Math, Physical...</h3>
+                <br>
+                <%= link_to "Login in with facebook", omniauth_authorize_path(:user, "facebook"),
+                class: "btn btn-primary btn-flat btn-lg" %>
+            </div>
+        </header>
+      <% end %>
+  </body>
 
-          <div>
-            <%= f.button :submit, "Sign up", class: "btn-success btn-flat" %>
-            <%= link_to "Sign in with Facebook", omniauth_authorize_path(:user, "facebook"),
-              class: "btn btn-primary btn-flat" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-6">
-        <%= render "shared/introduction" %>
-      </div>
-    </div>
-  <% else %>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
-    </div>
-  <% end %>
-</div>
-
+  </html>
