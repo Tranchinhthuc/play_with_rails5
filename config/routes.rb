@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root "examinations#index", as: :authenticated_root
+      root "static_pages#home", as: :authenticated_root
     end
     unauthenticated do
       root "static_pages#home", as: :unauthenticated_root

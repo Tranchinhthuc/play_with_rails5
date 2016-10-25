@@ -156,3 +156,27 @@ body {
 .action-column {
   width: 10%;
 }
+a .subject {
+  margin-top: 50px;
+  height: 200px;
+  border-radius: 70%;
+  //background: url(http://placehold.it/200x200) center no-repeat;
+  background: #ebf6f6;
+  border-style: solid;
+  border-width: 5px;
+  display: table-cell;
+  line-height: 190px;
+  font-size: 250%;
+}
+
+.active-link:hover .subject {
+  border-style: solid;
+  border-width: 5px;
+  border-color: green;
+}
+
+.inactive-link {
+  pointer-events: none;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
