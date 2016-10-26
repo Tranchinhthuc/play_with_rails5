@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025040809) do
+ActiveRecord::Schema.define(version: 20161026030035) do
 
   create_table "answer_sheets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "examination_id"
@@ -59,8 +59,9 @@ ActiveRecord::Schema.define(version: 20161025040809) do
     t.integer  "book_point"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "description", limit: 65535
   end
 
   create_table "examination_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -135,6 +136,22 @@ ActiveRecord::Schema.define(version: 20161025040809) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["resource_type", "resource_id"], name: "index_sub_questions_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "subject_documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "subject_id"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "description", limit: 65535
+    t.string   "url"
+    t.boolean  "active"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -46,6 +46,12 @@ Rails.application.routes.draw do
       post 'import', on: :collection
       get 'import', on: :collection
     end
+
+    resources :subjects
+  end
+
+  namespace :toeic do
+    resources :documents
   end
 
   resources :cards, only: [:index]

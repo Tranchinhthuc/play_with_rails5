@@ -19,6 +19,8 @@ class Ability
         can :read, Question do |question|
           question.creator == user
         end
+
+        can :read, Document
       end
     #
     # The first argument to `can` is the action you are giving the user

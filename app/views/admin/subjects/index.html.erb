@@ -1,0 +1,29 @@
+<h1>List Subjects</h1>
+
+<%= link_to "Add New Subject", new_admin_subject_path, class: "btn btn-primary btn-flat" %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.title %></td>
+        <td><%= subject.url %></td>
+        <td><%= subject.description %></td>
+        <td><%= subject.active %></td>
+        <td>
+          <%= link_to 'Show', [:admin, subject] %>
+          <%= link_to 'Edit', edit_admin_subject_path(subject) %>
+          <%= link_to 'Destroy', [:admin, subject], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

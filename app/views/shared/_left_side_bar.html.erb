@@ -33,7 +33,7 @@
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu" style="margin-top:20px">
           <!-- <ul class="nav nav-pills nav-stacked"> -->
             <% SysConst::USER_SIDE_RESOURCES_TOEIC_QUESTION_TYPES.each do |resource| %>
               <li class="<%= controller_name.in?([resource.to_s, resource.to_s.singularize + '_lessons']) ? 'active' : '' %>">
@@ -43,6 +43,9 @@
             <% end %>
             <li>
               <%= link_to "Kho từ vựng của bạn", words_user_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "Tài liệu", toeic_documents_path %>
             </li>
           <!-- </ul><br> -->
         <!-- <li class="header">HEADER</li> -->
