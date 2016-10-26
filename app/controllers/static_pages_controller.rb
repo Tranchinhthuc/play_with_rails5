@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    @subjects = Subject.all
     render layout: false
   end
 

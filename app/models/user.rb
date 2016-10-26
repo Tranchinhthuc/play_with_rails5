@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :buyer_examinations, foreign_key: "buyer_id"
   has_many :words
   has_many :cards
+  has_many :documents
 
   scope :index, -> { all }
 
